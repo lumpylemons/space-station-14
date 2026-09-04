@@ -232,9 +232,33 @@ namespace Content.Shared.Atmos
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
 
         /// <summary>
+        ///     Divisor scaling the base burn rate per tick for Tritium combustion.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float TritiumBurnRateDelta = 10f;
+
+        /// <summary>
+        ///     Minimum temperature in Kelvin required to initiate endothermic water vapor decomposition.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float WaterDecompositionMinTemp = 1800f;
+
+        /// <summary>
+        ///     Arrhenius activation energy constant controlling the exponential rate scaling of water decomposition.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float WaterDecompositionActivationEnergy = 7400f;
+
+        /// <summary>
+        ///     Amount of energy absorbed per mole of decomposed water vapor.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float WaterDecompositionEnergyAbsorbed = FireHydrogenEnergyReleased;
+
+        /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
         /// </summary>
-        public const float FireHydrogenEnergyReleased = 284e3f;
+        public const float FireHydrogenEnergyReleased = 286000f; // [Ibixstation]
         public const float FireMinimumTemperatureToExist = T0C + 100f;
         public const float FireMinimumTemperatureToSpread = T0C + 150f;
         public const float FireSpreadRadiosityScale = 0.85f;

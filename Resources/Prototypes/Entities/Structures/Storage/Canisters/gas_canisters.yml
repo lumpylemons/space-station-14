@@ -602,6 +602,46 @@
   - type: Lock
     locked: true
 
+- type: entity
+  parent: GasCanister
+  id: TritOxyCanister
+  name: tritoxy canister
+  description: A canister that can contain any type of gas. This one is supposed to contain frezon. It can be attached to connector ports using a wrench.
+  components:
+  - type: Sprite
+    layers:
+    - state: frezon
+    - state: paper
+      visible: false
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+    - state: integrity-unshaded-0
+      map: [ "enum.MaxPressureVisualLayers.BaseUnshaded" ]
+      shader: unshaded
+      visible: false
+    - state: mask-frezon
+      map: [ "enum.MaxPressureVisualLayers.Base" ]
+      visible: false
+  - type: MaxPressureVisuals
+    integrityMask: mask-frezon
+  - type: GasCanister
+    air:
+      volume: 1500
+      moles:
+        Oxygen: 50
+        Tritium: 50
+      temperature: 393.15
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageContainerStrong
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FrezonCanisterBroken:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+
 
 - type: entity
   parent: GasCanister
