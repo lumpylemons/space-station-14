@@ -223,13 +223,20 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        public const int TotalNumberOfGases = 10; // [Ibixstation]
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
         ///     Set to the closest multiple of 4 relative to <see cref="TotalNumberOfGases"/> for SIMD reasons.
         /// </summary>
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
+
+        /// <summary>
+        ///     Reaction rates and constants for Sabatier Reaction
+        ///     [Ibixstation]
+        /// </summary>
+        public const float SabatierReactionRate = 10f;
+        public const float SabatierEnergyReleased = 165000f; // ~165 kJ per mol of Methane produced
 
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
@@ -387,6 +394,7 @@ namespace Content.Shared.Atmos
         WaterVapor = 5,
         Ammonia = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Frezon = 8,
+        Methane = 9 // [Ibixstation]
     }
 }

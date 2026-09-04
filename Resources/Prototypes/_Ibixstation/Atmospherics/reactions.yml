@@ -1,0 +1,10 @@
+- type: gasReaction
+  id: Sabatier
+  priority: 2
+  minimumTemperaturfe: 523.15
+  maximumTemperature: 773.15
+  minimumRequirements:
+    CarbonDioxide: 0.01
+    Tritium: 0.01
+  effects:
+    - !type:SabatierReaction {}

@@ -1,0 +1,11 @@
+- type: gas
+  id: Methane
+  name: gas-methane
+  abbreviation: gas-methane-abbreviation
+  molarHeatCapacity: 35.8
+  heatCapacityRatio: 1.31
+  molarMass: 16.04
+  gasMolesVisible: 0.5
+  color: '#8c6b3a'
+  reagent: Methane
+  pricePerMole: 0.15

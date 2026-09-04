@@ -1,0 +1,53 @@
+- type: reagent
+  id: Methane
+  name: reagent-name-methane
+  desc: reagent-desc-methane
+  physicalDesc: reagent-physical-desc-gaseous
+  allowedDepartments:
+  - Engineering
+  flavor: bitter
+  color: "#8c6b3a"
+  boilingPoint: -161.5
+  meltingPoint: -182.5
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 1.2
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 0.5
+      - !type:Oxygenate
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
+          inverted: true
+        factor: -2
+    Respiration:
+      effects:
+      - !type:HealthChange
+        minScale: 0.5
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 0.2
+      - !type:Oxygenate
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
+          inverted: true
+        factor: -2
+      - !type:AdjustAlert
+        alertType: Toxins
+        minScale: 1
+        clear: true
+        time: 5
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable
+        multiplier: 0.6
