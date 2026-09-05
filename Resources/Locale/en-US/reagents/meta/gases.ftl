@@ -23,3 +23,6 @@ reagent-desc-frezon = A highly effective coolant.. and hallucinogenic.
 
 reagent-name-methane = methane
 reagent-desc-methane = A highly flammable, odorless hydrocarbon gas. Best kept away from open flames.
+
+reagent-name-carbon-monoxide = carbon monoxide
+reagent-desc-carbon-monoxide = You have genuinely no idea what this is.

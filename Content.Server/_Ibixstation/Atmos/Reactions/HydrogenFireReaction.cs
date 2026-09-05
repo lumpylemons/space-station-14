@@ -1,5 +1,6 @@
 using Content.Server.Atmos;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared._Ibixstation.Atmos;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
@@ -23,7 +24,7 @@ public sealed partial class HydrogenFireReaction : IGasReactionEffect
         var initialHydrogen = mixture.GetMoles(Gas.Hydrogen);
         var initialOxygen = mixture.GetMoles(Gas.Oxygen);
 
-        var burnRate = MathF.Min(initialHydrogen, initialOxygen * 2f) / Atmospherics.HydrogenBurnRateDelta;
+        var burnRate = MathF.Min(initialHydrogen, initialOxygen * 2f) / IbixAtmospherics.HydrogenBurnRateDelta;
 
         if (burnRate > Atmospherics.MinimumHeatCapacity)
         {

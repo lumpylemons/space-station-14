@@ -1,6 +1,7 @@
 using Content.Server.Atmos;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared._Ibixstation.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 
@@ -23,7 +24,7 @@ public sealed partial class WaterVaporDecompositionReaction : IGasReactionEffect
 
         // Arrhenius-style exponential activation rate
         // Scales decomposition rapidly as temperature approaches high limits
-        var activationFactor = MathF.Exp(-Atmospherics.WaterDecompositionActivationEnergy / temperature);
+        var activationFactor = MathF.Exp(-IbixAtmospherics.WaterDecompositionActivationEnergy / temperature);
         var decompRate = initialWater * activationFactor;
         var waterDecomposed = MathF.Min(decompRate, initialWater);
 
@@ -31,8 +32,7 @@ public sealed partial class WaterVaporDecompositionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Hydrogen, waterDecomposed);
         mixture.AdjustMoles(Gas.Oxygen, waterDecomposed * 0.5f);
 
-        // Energy absorbed per mole decomposed (Negative energyDelta)
-        var energyAbsorbed = waterDecomposed * Atmospherics.WaterDecompositionEnergyAbsorbed;
+        var energyAbsorbed = waterDecomposed * IbixAtmospherics.WaterDecompositionEnergyAbsorbed;
         energyAbsorbed /= heatScale;
 
         var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);

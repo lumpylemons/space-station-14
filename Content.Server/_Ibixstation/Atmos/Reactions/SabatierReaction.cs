@@ -1,5 +1,6 @@
 using Content.Server.Atmos;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared._Ibixstation.Atmos;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
@@ -26,7 +27,7 @@ public sealed partial class SabatierReaction : IGasReactionEffect
 
         var rate = fCO2 * MathF.Pow(fTrit, 2);
 
-        var deltaCO2 = (reactingCO2 / Atmospherics.SabatierReactionRate) * rate;
+        var deltaCO2 = reactingCO2 / IbixAtmospherics.SabatierReactionRate * rate;
 
         if (deltaCO2 <= 0f || nCO2 - deltaCO2 < 0)
             return ReactionResult.NoReaction;
@@ -42,7 +43,7 @@ public sealed partial class SabatierReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Methane, deltaMethane);
         mixture.AdjustMoles(Gas.WaterVapor, deltaWater);
 
-        var energyReleased = deltaMethane * Atmospherics.SabatierEnergyReleased;
+        var energyReleased = deltaMethane * IbixAtmospherics.SabatierEnergyReleased;
         energyReleased /= heatScale;
 
         if (energyReleased > 0f)

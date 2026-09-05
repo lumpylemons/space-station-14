@@ -31,7 +31,8 @@ namespace Content.Server.Atmos.Portable
             Gas.NitrousOxide,
             Gas.Frezon,
             Gas.Hydrogen, // [Ibixstation]
-            Gas.Methane // [Ibixstation]
+            Gas.Methane, // [Ibixstation]
+            Gas.CarbonMonoxide, // [Ibixstation]
         };
 
         [ViewVariables(VVAccess.ReadWrite)]
