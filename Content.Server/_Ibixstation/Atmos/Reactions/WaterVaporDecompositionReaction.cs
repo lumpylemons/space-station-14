@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace Content.Server._Ibixstation.Atmos.Reactions;
 
 /// <summary>
-///     Endothermic decomposition of Water Vapor back into Tritium and Oxygen.
+///     Endothermic decomposition of Water Vapor back into Hydrogen and Oxygen.
 ///     Scales exponentially with temperature to create a natural thermal lock.
 /// </summary>
 [UsedImplicitly]
@@ -17,13 +17,7 @@ public sealed partial class WaterVaporDecompositionReaction : IGasReactionEffect
     {
         var temperature = mixture.Temperature;
 
-        // Skip calculations below activation threshold
-        if (temperature < Atmospherics.WaterDecompositionMinTemp)
-            return ReactionResult.NoReaction;
-
         var initialWater = mixture.GetMoles(Gas.WaterVapor);
-        if (initialWater <= Atmospherics.MinimumHeatCapacity)
-            return ReactionResult.NoReaction;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
 
@@ -33,11 +27,8 @@ public sealed partial class WaterVaporDecompositionReaction : IGasReactionEffect
         var decompRate = initialWater * activationFactor;
         var waterDecomposed = MathF.Min(decompRate, initialWater);
 
-        if (waterDecomposed <= Atmospherics.MinimumHeatCapacity)
-            return ReactionResult.NoReaction;
-
         mixture.AdjustMoles(Gas.WaterVapor, -waterDecomposed);
-        mixture.AdjustMoles(Gas.Tritium, waterDecomposed);
+        mixture.AdjustMoles(Gas.Hydrogen, waterDecomposed);
         mixture.AdjustMoles(Gas.Oxygen, waterDecomposed * 0.5f);
 
         // Energy absorbed per mole decomposed (Negative energyDelta)

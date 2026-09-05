@@ -23,15 +23,14 @@ public sealed partial class TritFireReaction : IGasReactionEffect
         var initialTritium = mixture.GetMoles(Gas.Tritium);
         var initialOxygen = mixture.GetMoles(Gas.Oxygen);
 
-        if (initialTritium <= Atmospherics.MinimumHeatCapacity || initialOxygen <= Atmospherics.MinimumHeatCapacity)
-            return ReactionResult.NoReaction;
-
-        var burnRate = MathF.Min(initialTritium, initialOxygen * 2f) / Atmospherics.TritiumBurnRateDelta;
+        var burnRate = MathF.Min(initialTritium, initialOxygen * 2f) / Atmospherics.HydrogenBurnRateDelta;
 
         if (burnRate > Atmospherics.MinimumHeatCapacity)
         {
             var tritBurned = MathF.Min(burnRate, initialTritium);
             var oxyBurned = tritBurned * 0.5f;
+
+            // TODO: Radiation pulse
 
             mixture.AdjustMoles(Gas.Tritium, -tritBurned);
             mixture.AdjustMoles(Gas.Oxygen, -oxyBurned);
