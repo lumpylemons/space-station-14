@@ -29,6 +29,7 @@ public sealed partial class GasVentScrubberData : BaseAtmosDeviceData
         Gas.Ammonia,
         Gas.NitrousOxide,
         Gas.Frezon,
+        Gas.Hydrogen, // [Ibixstation]
         Gas.Methane // [Ibixstation]
     };
 

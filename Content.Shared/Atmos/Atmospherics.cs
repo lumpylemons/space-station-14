@@ -223,13 +223,37 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 10; // [Ibixstation]
+        public const int TotalNumberOfGases = 11;
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
         ///     Set to the closest multiple of 4 relative to <see cref="TotalNumberOfGases"/> for SIMD reasons.
         /// </summary>
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
+
+        /// <summary>
+        ///     Divisor scaling the base burn rate per tick for Tritium combustion.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float HydrogenBurnRateDelta = 10f;
+
+        /// <summary>
+        ///     Minimum temperature in Kelvin required to initiate endothermic water vapor decomposition.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float WaterDecompositionMinTemp = 1800f;
+
+        /// <summary>
+        ///     Arrhenius activation energy constant controlling the exponential rate scaling of water decomposition.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float WaterDecompositionActivationEnergy = 7400f;
+
+        /// <summary>
+        ///     Amount of energy absorbed per mole of decomposed water vapor.
+        ///     [Ibixstation]
+        /// </summary>
+        public const float WaterDecompositionEnergyAbsorbed = FireHydrogenEnergyReleased;
 
         /// <summary>
         ///     Reaction rates and constants for Sabatier Reaction
@@ -241,7 +265,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
         /// </summary>
-        public const float FireHydrogenEnergyReleased = 284e3f;
+        public const float FireHydrogenEnergyReleased = 286000f; // [Ibixstation]
         public const float FireMinimumTemperatureToExist = T0C + 100f;
         public const float FireMinimumTemperatureToSpread = T0C + 150f;
         public const float FireSpreadRadiosityScale = 0.85f;
@@ -395,6 +419,7 @@ namespace Content.Shared.Atmos
         Ammonia = 6,
         NitrousOxide = 7,
         Frezon = 8,
+        Hydrogen = 9, // [Ibixstation]
         Methane = 9 // [Ibixstation]
     }
 }

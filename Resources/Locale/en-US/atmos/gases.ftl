@@ -18,5 +18,8 @@ gas-frezon = Frezon
 gas-frezon-abbreviation = F
 
 
+gas-hydrogen = Hydrogen
+gas-hydrogen-abbreviation = H₂
+
 gas-methane = Methane
 gas-methane-abbreviation = CH₄
