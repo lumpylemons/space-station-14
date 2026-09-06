@@ -84,7 +84,7 @@ public static class IbixAtmospherics
     public const float WaterGasShiftEnergyReleased = 41000f;
 
     // =========================================================================
-    // Cyanogen Synthesis Pathways
+    // Cyanogen Synthesis Pathways & Combustion
     // =========================================================================
 
     /// <summary>
@@ -129,8 +129,21 @@ public static class IbixAtmospherics
     /// </summary>
     public const float CyanogenCOEnergyReleased = 45000f;
 
+    /// <summary>
+    ///     Energy released per mole of Cyanogen burned (1095 kJ/mol).
+    ///     Generates an extremely hot, hyper-exothermic clean flame.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FireCyanogenEnergyReleased = 1095000f;
+
+    /// <summary>
+    ///     Divisor scaling the base burn rate per tick for Cyanogen combustion.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenBurnRateDelta = 15f;
+
     // =========================================================================
-    // Carbon Chain & Combustion Equilibrium
+    // Carbon Chain & Combustion
     // =========================================================================
 
     /// <summary>
