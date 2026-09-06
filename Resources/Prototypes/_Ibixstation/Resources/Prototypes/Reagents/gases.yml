@@ -79,3 +79,33 @@
         minScale: 1.0
         clear: true
         time: 5
+
+- type: reagent
+  id: Cyanogen
+  name: reagent-name-cyanogen
+  desc: reagent-desc-cyanogen
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: bitter
+  color: "#a32a2a"
+  boilingPoint: -21.1
+  meltingPoint: -27.9
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 3.0
+    Respiration:
+      effects:
+      - !type:HealthChange
+        minScale: 0.5
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 2.0
+      - !type:AdjustAlert
+        alertType: Toxins
+        minScale: 1.0
+        clear: true
+        time: 5

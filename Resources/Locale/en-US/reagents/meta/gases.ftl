@@ -26,3 +26,6 @@ reagent-desc-methane = A highly flammable, odorless hydrocarbon gas. Best kept a
 
 reagent-name-carbon-monoxide = carbon monoxide
 reagent-desc-carbon-monoxide = You have genuinely no idea what this is.
+
+reagent-name-cyanogen = cyanogen
+reagent-desc-cyanogen = A toxic, highly reactive gas with an almond-like odor. Exposure rapidly impairs cellular respiration.

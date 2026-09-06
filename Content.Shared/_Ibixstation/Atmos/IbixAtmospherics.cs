@@ -84,6 +84,52 @@ public static class IbixAtmospherics
     public const float WaterGasShiftEnergyReleased = 41000f;
 
     // =========================================================================
+    // Cyanogen Synthesis Pathways
+    // =========================================================================
+
+    /// <summary>
+    ///     Reaction rate divisor scaling the per-tick conversion for oxidative cyanogen synthesis.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenOxidativeReactionRate = 25f;
+
+    /// <summary>
+    ///     Energy released per mole of Cyanogen produced via oxidative synthesis (180 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenOxidativeEnergyReleased = 180000f;
+
+    /// <summary>
+    ///     Reaction rate divisor scaling the base per-tick conversion for pyrolytic cyanogen synthesis.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenPyrolysisReactionRate = 35f;
+
+    /// <summary>
+    ///     Arrhenius activation energy constant controlling exponential scaling for thermal pyrolysis.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenPyrolysisActivationEnergy = 9500f;
+
+    /// <summary>
+    ///     Amount of energy absorbed per mole of Cyanogen produced via endothermic pyrolysis (320 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenPyrolysisEnergyAbsorbed = 320000f;
+
+    /// <summary>
+    ///     Reaction rate divisor scaling the per-tick conversion for CO-route cyanogen synthesis.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenCOReactionRate = 30f;
+
+    /// <summary>
+    ///     Energy released per mole of Cyanogen produced via carbon monoxide synthesis (45 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float CyanogenCOEnergyReleased = 45000f;
+
+    // =========================================================================
     // Carbon Chain & Combustion Equilibrium
     // =========================================================================
 

@@ -78,3 +78,37 @@
     WaterVapor: 0.01
   effects:
     - !type:WaterGasShiftReaction {}
+
+- type: gasReaction
+  id: CyanogenOxidativeSynthesis
+  priority: 1
+  minimumTemperature: 1073.15
+  maximumTemperature: 1473.15
+  minimumRequirements:
+    Methane: 0.01
+    Ammonia: 0.01
+    Oxygen: 0.01
+  effects:
+    - !type:CyanogenOxidativeSynthesisReaction {}
+
+- type: gasReaction
+  id: CyanogenPyrolyticSynthesis
+  priority: 0
+  minimumTemperature: 1273.15
+  maximumTemperature: 1673.15
+  minimumRequirements:
+    Methane: 0.01
+    Ammonia: 0.01
+  effects:
+    - !type:CyanogenPyrolyticSynthesisReaction {}
+
+- type: gasReaction
+  id: CyanogenCOSynthesis
+  priority: 1
+  minimumTemperature: 973.15
+  maximumTemperature: 1373.15
+  minimumRequirements:
+    CarbonMonoxide: 0.01
+    Ammonia: 0.01
+  effects:
+    - !type:CyanogenCOSynthesisReaction {}

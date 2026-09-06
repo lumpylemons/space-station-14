@@ -35,3 +35,16 @@
   reagent: CarbonMonoxide
   pricePerMole: 0
   isFuel: true
+
+- type: gas
+  id: Cyanogen
+  name: gas-cyanogen
+  abbreviation: gas-cyanogen-abbreviation
+  molarHeatCapacity: 57.2
+  heatCapacityRatio: 1.25
+  molarMass: 52.04
+  gasMolesVisible: 0.2
+  color: '#a32a2a'
+  reagent: Cyanogen
+  pricePerMole: 0.45
+  isFuel: true

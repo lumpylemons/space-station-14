@@ -33,6 +33,7 @@ namespace Content.Server.Atmos.Portable
             Gas.Hydrogen, // [Ibixstation]
             Gas.Methane, // [Ibixstation]
             Gas.CarbonMonoxide, // [Ibixstation]
+            Gas.Cyanogen, // [Ibixstation]
         };
 
         [ViewVariables(VVAccess.ReadWrite)]

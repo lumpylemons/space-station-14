@@ -24,3 +24,5 @@ gas-methane = Methane
 gas-methane-abbreviation = CH₄
 gas-carbon-monoxide = Carbon Monoxide
 gas-carbon-monoxide-abbreviation = CO
+gas-cyanogen = Cyanogen
+gas-cyanogen-abbreviation = C₂N₂
