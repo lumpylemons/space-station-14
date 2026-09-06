@@ -36,30 +36,62 @@ public static class IbixAtmospherics
     public const float WaterDecompositionEnergyAbsorbed = Atmospherics.FireHydrogenEnergyReleased;
 
     // =========================================================================
-    // Sabatier Synthesis
+    // CO2 Methanation
     // =========================================================================
 
     /// <summary>
     ///     Reaction rates and constants for Sabatier Reaction.
     ///     [Ibixstation]
     /// </summary>
-    public const float SabatierReactionRate = 10f;
+    public const float CO2MethanationReactionRate = 20f;
 
     /// <summary>
     ///     Energy released per mole of Methane produced (165 kJ/mol).
     ///     [Ibixstation]
     /// </summary>
-    public const float SabatierEnergyReleased = 165000f;
+    public const float CO2MethanationEnergyReleased = 165000f;
+
+    // =========================================================================
+    // CO Methanation
+    // =========================================================================
+
+    /// <summary>
+    ///     Reaction rate divisor for CO Methanation.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float COMethanationReactionRate = 10f;
+
+    /// <summary>
+    ///     Energy released per mole of Methane produced via CO methanation (206 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float COMethanationEnergyReleased = 206000f;
+
+    // =========================================================================
+    // Water-Gas Shift
+    // =========================================================================
+
+    /// <summary>
+    ///     Reaction rate divisor for Water-Gas Shift.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float WaterGasShiftReactionRate = 25f;
+
+    /// <summary>
+    ///     Energy released per mole of CO shifted to H2 via water vapor (41 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float WaterGasShiftEnergyReleased = 41000f;
 
     // =========================================================================
     // Carbon Chain & Combustion Equilibrium
     // =========================================================================
 
     /// <summary>
-    ///     Energy released per mole of Methane burned (675 kJ/mol).
+    ///     Energy released per mole of Methane burned (802 kJ/mol).
     ///     [Ibixstation]
     /// </summary>
-    public const float FireMethaneEnergyReleased = 675000f;
+    public const float FireMethaneEnergyReleased = 802000f;
 
     /// <summary>
     ///     Divisor scaling the base burn rate per tick for Methane combustion.

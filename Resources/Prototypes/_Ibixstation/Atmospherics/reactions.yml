@@ -18,15 +18,15 @@
   - !type:HydrogenFireReaction {}
 
 - type: gasReaction
-  id: Sabatier
+  id: CO2Methanation
   priority: 2
   minimumTemperaturfe: 523.15
   maximumTemperature: 773.15
   minimumRequirements:
     CarbonDioxide: 0.01
-    Tritium: 0.01
+    Hydrogen: 0.01
   effects:
-    - !type:SabatierReaction {}
+    - !type:CO2MethanationReaction {}
 
 - type: gasReaction
   id: MethaneFire
@@ -56,3 +56,25 @@
     CarbonDioxide: 0.01
   effects:
     - !type:CarbonDioxideDecompositionReaction {}
+
+- type: gasReaction
+  id: COMethanation
+  priority: 2
+  minimumTemperature: 473.15 # (CO methanation initiates slightly lower than CO2)
+  maximumTemperature: 773.15
+  minimumRequirements:
+    CarbonMonoxide: 0.01
+    Hydrogen: 0.01
+  effects:
+    - !type:COMethanationReaction {}
+
+- type: gasReaction
+  id: WaterGasShift
+  priority: 3
+  minimumTemperature: 573.15
+  maximumTemperature: 973.15
+  minimumRequirements:
+    CarbonMonoxide: 0.01
+    WaterVapor: 0.01
+  effects:
+    - !type:WaterGasShiftReaction {}
