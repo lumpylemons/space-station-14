@@ -80,9 +80,9 @@
   id: Ammonia
   name: gas-ammonia
   abbreviation: gas-ammonia-abbreviation
-  molarHeatCapacity: 20
-  heatCapacityRatio: 1.4
-  molarMass: 44
+  molarHeatCapacity: 36 # [Ibixstation]
+  heatCapacityRatio: 1.31 # [Ibixstation]
+  molarMass: 17 # [Ibixstation]
   gasOverlaySprite:
     sprite: /Textures/Effects/atmospherics.rsi
     state: miasma
@@ -91,6 +91,7 @@
   color: '#56941E'
   reagent: Ammonia
   pricePerMole: 0.15
+  isFuel: true # [Ibixstation]
 
 - type: gas
   id: NitrousOxide

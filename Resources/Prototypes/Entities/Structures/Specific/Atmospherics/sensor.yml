@@ -25,6 +25,10 @@
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
       Frezon: danger
+      Hydrogen: stationTritium  # [Ibixstation]
+      Methane: stationPlasma    # [Ibixstation]
+      CarbonMonoxide: danger    # [Ibixstation]
+      Cyanogen: danger          # [Ibixstation]
   - type: GuideHelp
     guides:
     - DeviceMonitoringAndControl

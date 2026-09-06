@@ -187,4 +187,40 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float CO2DecompositionEnergyAbsorbed = FireCOEnergyReleased;
+
+    // =========================================================================
+    // Ammonia Synthesis, Combustion & Decomposition
+    // =========================================================================
+
+    /// <summary>
+    ///     Energy released per mole of Ammonia burned (383 kJ/mol).
+    ///     Produces a relatively weak, slow-burning flame.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FireAmmoniaEnergyReleased = 383000f;
+
+    /// <summary>
+    ///     Divisor scaling the base burn rate per tick for Ammonia combustion.
+    ///     High value means it burns much slower per tick compared to Methane or Hydrogen.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float AmmoniaBurnRateDelta = 35f;
+
+    /// <summary>
+    ///     Reaction rate divisor for Ammonia Synthesis.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float HighPressureAmmoniaSynthesisReactionRate = 15f;
+
+    /// <summary>
+    ///     Energy released per mole of Ammonia synthesized (46.2 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float HighPressureAmmoniaSynthesisEnergyReleased = 46200f;
+
+    /// <summary>
+    ///     Energy absorbed per mole of Ammonia decomposed (46.2 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float AmmoniaDecompositionEnergyAbsorbed = 46200f;
 }

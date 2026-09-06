@@ -22,6 +22,10 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    - Hydrogen       # [Ibixstation]
+    - Methane        # [Ibixstation]
+    - CarbonMonoxide # [Ibixstation]
+    - Cyanogen       # [Ibixstation]
     #- Helium3 TODO: fusion
     # remove everything except oxygen to maintain oxygen ratio
     overflowGases:
@@ -33,6 +37,10 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    - Hydrogen       # [Ibixstation]
+    - Methane        # [Ibixstation]
+    - CarbonMonoxide # [Ibixstation]
+    - Cyanogen       # [Ibixstation]
     #- Helium3 TODO: fusion
   - type: AirIntake
   # for intake and filter to work

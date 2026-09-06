@@ -81,9 +81,8 @@
 
 - type: gasReaction
   id: CyanogenOxidativeSynthesis
-  priority: 1
+  priority: -3
   minimumTemperature: 1073.15
-  maximumTemperature: 1473.15
   minimumRequirements:
     Methane: 0.01
     Ammonia: 0.01
@@ -93,9 +92,8 @@
 
 - type: gasReaction
   id: CyanogenPyrolyticSynthesis
-  priority: 0
+  priority: -3
   minimumTemperature: 1273.15
-  maximumTemperature: 1673.15
   minimumRequirements:
     Methane: 0.01
     Ammonia: 0.01
@@ -104,9 +102,8 @@
 
 - type: gasReaction
   id: CyanogenCOSynthesis
-  priority: 1
+  priority: -3
   minimumTemperature: 973.15
-  maximumTemperature: 1373.15
   minimumRequirements:
     CarbonMonoxide: 0.01
     Ammonia: 0.01
@@ -116,9 +113,38 @@
 - type: gasReaction
   id: CyanogenFire
   priority: -1
-  minimumTemperature: 423.15 # 150°C
+  minimumTemperature: 423.15
   minimumRequirements:
     Oxygen: 0.01
     Cyanogen: 0.01
   effects:
     - !type:CyanogenFireReaction {}
+
+- type: gasReaction
+  id: AmmoniaFire
+  priority: -1
+  minimumTemperature: 924.15
+  minimumRequirements:
+    Oxygen: 0.01
+    Ammonia: 0.01
+  effects:
+    - !type:AmmoniaFireReaction {}
+
+- type: gasReaction
+  id: HighPressureAmmoniaSynthesis
+  priority: 2
+  minimumTemperature: 673.15
+  minimumRequirements:
+    Nitrogen: 0.01
+    Hydrogen: 0.01
+  effects:
+    - !type:HighPressureAmmoniaSynthesisReaction {}
+
+- type: gasReaction
+  id: AmmoniaDecomposition
+  priority: -2
+  minimumTemperature: 773.15
+  minimumRequirements:
+    Ammonia: 0.01
+  effects:
+    - !type:AmmoniaDecompositionReaction {}
