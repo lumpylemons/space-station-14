@@ -31,7 +31,7 @@ public sealed partial class HighPressureAmmoniaSynthesisReaction : IGasReactionE
         var pressureModifier = MathF.Pow(pressureDelta / 500f, 2f);
 
         var rate = fNitrogen * MathF.Pow(fHydrogen, 3f) * pressureModifier;
-        var deltaUnits = maxReactingUnits / IbixAtmospherics.HaberBoschReactionRate * rate;
+        var deltaUnits = maxReactingUnits / IbixAtmospherics.HighPressureAmmoniaSynthesisReactionRate * rate;
 
         var deltaNitrogen = deltaUnits;
         var deltaHydrogen = deltaUnits * 3f;
@@ -43,7 +43,7 @@ public sealed partial class HighPressureAmmoniaSynthesisReaction : IGasReactionE
         mixture.AdjustMoles(Gas.Hydrogen, -deltaHydrogen);
         mixture.AdjustMoles(Gas.Ammonia, deltaAmmonia);
 
-        var energyReleased = deltaAmmonia * IbixAtmospherics.HaberBoschEnergyReleased;
+        var energyReleased = deltaAmmonia * IbixAtmospherics.HighPressureAmmoniaSynthesisEnergyReleased;
         energyReleased /= heatScale;
 
         if (energyReleased > 0f)

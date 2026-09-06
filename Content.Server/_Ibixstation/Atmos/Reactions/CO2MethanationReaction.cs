@@ -13,27 +13,27 @@ public sealed partial class CO2MethanationReaction : IGasReactionEffect
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
         var nCO2 = mixture.GetMoles(Gas.CarbonDioxide);
-        var nTrit = mixture.GetMoles(Gas.Hydrogen);
+        var nH2 = mixture.GetMoles(Gas.Hydrogen);
         var nTotal = mixture.TotalMoles;
 
-        var maxCO2ByTrit = nTrit / 4f;
-        var reactingCO2 = MathF.Min(nCO2, maxCO2ByTrit);
+        var maxCO2ByHydrogen = nH2 / 4f;
+        var reactingCO2 = MathF.Min(nCO2, maxCO2ByHydrogen);
 
         var fCO2 = nCO2 / nTotal;
-        var fTrit = nTrit / nTotal;
+        var fHydrogen = nH2 / nTotal;
 
-        var rate = fCO2 * MathF.Pow(fTrit, 2);
+        var limitingFraction = MathF.Min(fCO2, fHydrogen);
 
-        var deltaCO2 = reactingCO2 / IbixAtmospherics.CO2MethanationReactionRate * rate;
+        var deltaCO2 = (reactingCO2 / IbixAtmospherics.CO2MethanationReactionRate) * limitingFraction;
 
-        var deltaTrit = deltaCO2 * 4f;
+        var deltaHydrogen = deltaCO2 * 4f;
         var deltaMethane = deltaCO2;
         var deltaWater = deltaCO2 * 2f;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
 
         mixture.AdjustMoles(Gas.CarbonDioxide, -deltaCO2);
-        mixture.AdjustMoles(Gas.Hydrogen, -deltaTrit);
+        mixture.AdjustMoles(Gas.Hydrogen, -deltaHydrogen);
         mixture.AdjustMoles(Gas.Methane, deltaMethane);
         mixture.AdjustMoles(Gas.WaterVapor, deltaWater);
 

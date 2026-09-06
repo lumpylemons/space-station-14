@@ -27,15 +27,16 @@ public sealed partial class CyanogenOxidativeSynthesisReaction : IGasReactionEff
         var fAmmonia = nAmmonia / nTotal;
         var fOxygen = nOxygen / nTotal;
 
-        var rate = fMethane * fAmmonia * fOxygen;
+        var limitingFraction = MathF.Min(fMethane, MathF.Min(fAmmonia, fOxygen));
+        var tempFactor = MathF.Min(2.5f, mixture.Temperature / 1200f);
 
-        var deltaCyanogen = reactingUnits / IbixAtmospherics.CyanogenOxidativeReactionRate * rate;
+        var rate = limitingFraction * tempFactor;
+        var deltaCyanogen = (reactingUnits / IbixAtmospherics.CyanogenOxidativeReactionRate) * rate;
 
         var deltaMethane = deltaCyanogen * 2f;
         var deltaAmmonia = deltaCyanogen * 2f;
         var deltaOxygen = deltaCyanogen * 2f;
         var deltaWater = deltaCyanogen * 6f;
-        var deltaHydrogen = deltaCyanogen;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
 
@@ -44,7 +45,6 @@ public sealed partial class CyanogenOxidativeSynthesisReaction : IGasReactionEff
         mixture.AdjustMoles(Gas.Oxygen, -deltaOxygen);
         mixture.AdjustMoles(Gas.Cyanogen, deltaCyanogen);
         mixture.AdjustMoles(Gas.WaterVapor, deltaWater);
-        mixture.AdjustMoles(Gas.Hydrogen, deltaHydrogen);
 
         var energyReleased = deltaCyanogen * IbixAtmospherics.CyanogenOxidativeEnergyReleased;
         energyReleased /= heatScale;

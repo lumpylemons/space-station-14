@@ -18,7 +18,7 @@ public sealed partial class AmmoniaDecompositionReaction : IGasReactionEffect
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
 
-        var deltaAmmonia = (nAmmonia / 25f) * (nAmmonia / nTotal);
+        var deltaAmmonia = nAmmonia / IbixAtmospherics.AmmoniaDecompositionReactionRate * (nAmmonia / nTotal);
         var ammoniaDecomposed = MathF.Min(deltaAmmonia, nAmmonia);
 
         var deltaNitrogen = ammoniaDecomposed * 0.5f;

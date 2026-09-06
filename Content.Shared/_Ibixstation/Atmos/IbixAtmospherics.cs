@@ -206,6 +206,8 @@ public static class IbixAtmospherics
     /// </summary>
     public const float AmmoniaBurnRateDelta = 35f;
 
+    public const float AmmoniaDecompositionReactionRate = 25f;
+
     /// <summary>
     ///     Reaction rate divisor for Ammonia Synthesis.
     ///     [Ibixstation]
@@ -223,4 +225,44 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float AmmoniaDecompositionEnergyAbsorbed = 46200f;
+
+    // =========================================================================
+    // Reverse Water-Gas Shift & Steam Methane Reforming
+    // =========================================================================
+
+    /// <summary>
+    ///     Reaction rate divisor scaling the per-tick conversion for Reverse Water-Gas Shift.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float ReverseWaterGasShiftReactionRate = 25f;
+
+    /// <summary>
+    ///     Arrhenius activation energy constant controlling exponential scaling for Reverse Water-Gas Shift.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float ReverseWaterGasShiftActivationEnergy = 4800f;
+
+    /// <summary>
+    ///     Amount of energy absorbed per mole of CO2 shifted to CO via hydrogen (41 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float ReverseWaterGasShiftEnergyAbsorbed = 41000f;
+
+    /// <summary>
+    ///     Reaction rate divisor scaling the per-tick conversion for Steam Methane Reforming.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float SteamMethaneReformingReactionRate = 18f;
+
+    /// <summary>
+    ///     Arrhenius activation energy constant controlling exponential scaling for Steam Methane Reforming.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float SteamMethaneReformingActivationEnergy = 6200f;
+
+    /// <summary>
+    ///     Amount of energy absorbed per mole of Methane reformed via water vapor (206 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float SteamMethaneReformingEnergyAbsorbed = 206000f;
 }

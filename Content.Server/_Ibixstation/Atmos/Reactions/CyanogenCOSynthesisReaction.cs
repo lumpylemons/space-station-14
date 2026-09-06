@@ -24,8 +24,10 @@ public sealed partial class CyanogenCOSynthesisReaction : IGasReactionEffect
         var fCO = nCO / nTotal;
         var fAmmonia = nAmmonia / nTotal;
 
-        var rate = fCO * fAmmonia;
+        var limitingFraction = MathF.Min(fCO, fAmmonia);
+        var tempFactor = MathF.Max(1f, mixture.Temperature / 1000f);
 
+        var rate = limitingFraction * tempFactor;
         var deltaCyanogen = reactingUnits / IbixAtmospherics.CyanogenCOReactionRate * rate;
 
         var deltaCO = deltaCyanogen * 2f;

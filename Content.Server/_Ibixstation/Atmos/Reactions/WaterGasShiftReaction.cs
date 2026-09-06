@@ -20,9 +20,10 @@ public sealed partial class WaterGasShiftReaction : IGasReactionEffect
 
         var fCO = nCO / nTotal;
         var fWater = nWater / nTotal;
-        var rate = fCO * fWater;
 
-        var shiftRate = reactingMoles / IbixAtmospherics.WaterGasShiftReactionRate * rate;
+        var limitingFraction = MathF.Min(fCO, fWater);
+
+        var shiftRate = reactingMoles / IbixAtmospherics.WaterGasShiftReactionRate * limitingFraction;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
 

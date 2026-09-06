@@ -20,8 +20,7 @@
 - type: gasReaction
   id: CO2Methanation
   priority: 2
-  minimumTemperaturfe: 523.15
-  maximumTemperature: 773.15
+  minimumTemperature: 523.15
   minimumRequirements:
     CarbonDioxide: 0.01
     Hydrogen: 0.01
@@ -61,7 +60,6 @@
   id: COMethanation
   priority: 2
   minimumTemperature: 473.15 # (CO methanation initiates slightly lower than CO2)
-  maximumTemperature: 773.15
   minimumRequirements:
     CarbonMonoxide: 0.01
     Hydrogen: 0.01
@@ -72,7 +70,6 @@
   id: WaterGasShift
   priority: 3
   minimumTemperature: 573.15
-  maximumTemperature: 973.15
   minimumRequirements:
     CarbonMonoxide: 0.01
     WaterVapor: 0.01
@@ -148,3 +145,23 @@
     Ammonia: 0.01
   effects:
     - !type:AmmoniaDecompositionReaction {}
+
+- type: gasReaction
+  id: ReverseWaterGasShift
+  priority: 1
+  minimumTemperature: 600.15
+  minimumRequirements:
+    CarbonDioxide: 0.01
+    Hydrogen: 0.01
+  effects:
+    - !type:ReverseWaterGasShiftReaction {}
+
+- type: gasReaction
+  id: SteamMethaneReforming
+  priority: 1
+  minimumTemperature: 650.15
+  minimumRequirements:
+    Methane: 0.01
+    WaterVapor: 0.01
+  effects:
+    - !type:SteamMethaneReformingReaction {}

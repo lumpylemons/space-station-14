@@ -25,9 +25,10 @@ public sealed partial class CyanogenPyrolyticSynthesisReaction : IGasReactionEff
         var fAmmonia = nAmmonia / nTotal;
 
         var activationFactor = MathF.Exp(-IbixAtmospherics.CyanogenPyrolysisActivationEnergy / temperature);
-        var rate = fMethane * fAmmonia * activationFactor;
+        var limitingFraction = MathF.Min(fMethane, fAmmonia);
 
-        var deltaCyanogen = reactingUnits / IbixAtmospherics.CyanogenPyrolysisReactionRate * rate;
+        var rate = limitingFraction * activationFactor;
+        var deltaCyanogen = (reactingUnits / IbixAtmospherics.CyanogenPyrolysisReactionRate) * rate;
 
         var deltaMethane = deltaCyanogen * 2f;
         var deltaAmmonia = deltaCyanogen * 2f;
