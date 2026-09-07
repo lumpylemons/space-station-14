@@ -291,4 +291,14 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float FrezonProductionCoolingMidTemperature = 73.15f;
+
+    /// <summary>
+    ///     Moles of O2 consumed per mole of Plasma during carbon dioxide production.
+    /// </summary>
+    public const float PlasmaOxygenBurnRatioCarbonDioxide = 2.0f;
+
+    /// <summary>
+    ///     Moles of O2 consumed per mole of Plasma during tritium supersaturation.
+    /// </summary>
+    public const float PlasmaOxygenBurnRatioTritium = 1.0f;
 }
