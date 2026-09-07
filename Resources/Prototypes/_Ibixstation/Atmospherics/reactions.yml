@@ -165,3 +165,24 @@
     WaterVapor: 0.01
   effects:
     - !type:SteamMethaneReformingReaction {}
+
+- type: gasReaction
+  id: AltFrezonProduction
+  priority: 0
+  maximumTemperature: 73.15
+  minimumRequirements:
+    Methane: 0.01
+    Plasma: 0.01
+    Nitrogen: 0.01
+  effects:
+    - !type:AltFrezonProductionReaction {}
+
+- type: gasReaction
+  id: AltFrezonCoolant
+  priority: -1
+  minimumTemperature: 23.15
+  minimumRequirements:
+    Frezon: 0.01
+    Nitrogen: 0.01
+  effects:
+    - !type:AltFrezonCoolantReaction {}

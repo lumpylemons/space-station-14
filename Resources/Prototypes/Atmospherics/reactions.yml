@@ -18,26 +18,26 @@
   effects:
   - !type:TritFireReaction {} # [Ibixstation]
 
-- type: gasReaction
-  id: FrezonCoolant
-  priority: 1
-  minimumTemperature: 23.15
-  minimumRequirements:
-    Nitrogen: 0.01
-    Frezon: 0.01
-  effects:
-  - !type:FrezonCoolantReaction {}
+# - type: gasReaction
+#   id: FrezonCoolant
+#   priority: 1
+#   minimumTemperature: 23.15
+#   minimumRequirements:
+#     Nitrogen: 0.01
+#     Frezon: 0.01
+#   effects:
+#   - !type:FrezonCoolantReaction {}
 
-- type: gasReaction
-  id: FrezonProduction
-  priority: 2
-  maximumTemperature: 73.15 # Cold tritium fire, basically.
-  minimumRequirements:
-    Oxygen: 0.01
-    Nitrogen: 0.01
-    Tritium: 0.01
-  effects:
-  - !type:FrezonProductionReaction {}
+# - type: gasReaction
+#   id: FrezonProduction
+#   priority: 2
+#   maximumTemperature: 73.15 # Cold tritium fire, basically.
+#   minimumRequirements:
+#     Oxygen: 0.01
+#     Nitrogen: 0.01
+#     Tritium: 0.01
+#   effects:
+#   - !type:FrezonProductionReaction {}
 
 - type: gasReaction
   id: AmmoniaOxygenReaction

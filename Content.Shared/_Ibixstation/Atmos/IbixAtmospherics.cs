@@ -7,10 +7,6 @@ namespace Content.Shared._Ibixstation.Atmos;
 /// </summary>
 public static class IbixAtmospherics
 {
-    // =========================================================================
-    // Hydrogen & Water Vapor Equilibrium
-    // =========================================================================
-
     /// <summary>
     ///     Divisor scaling the base burn rate per tick for Tritium/Hydrogen combustion.
     ///     [Ibixstation]
@@ -35,10 +31,6 @@ public static class IbixAtmospherics
     /// </summary>
     public const float WaterDecompositionEnergyAbsorbed = Atmospherics.FireHydrogenEnergyReleased;
 
-    // =========================================================================
-    // CO2 Methanation
-    // =========================================================================
-
     /// <summary>
     ///     Reaction rates and constants for Sabatier Reaction.
     ///     [Ibixstation]
@@ -50,10 +42,6 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float CO2MethanationEnergyReleased = 165000f;
-
-    // =========================================================================
-    // CO Methanation
-    // =========================================================================
 
     /// <summary>
     ///     Reaction rate divisor for CO Methanation.
@@ -67,10 +55,6 @@ public static class IbixAtmospherics
     /// </summary>
     public const float COMethanationEnergyReleased = 206000f;
 
-    // =========================================================================
-    // Water-Gas Shift
-    // =========================================================================
-
     /// <summary>
     ///     Reaction rate divisor for Water-Gas Shift.
     ///     [Ibixstation]
@@ -82,10 +66,6 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float WaterGasShiftEnergyReleased = 41000f;
-
-    // =========================================================================
-    // Cyanogen Synthesis Pathways & Combustion
-    // =========================================================================
 
     /// <summary>
     ///     Reaction rate divisor scaling the per-tick conversion for oxidative cyanogen synthesis.
@@ -142,10 +122,6 @@ public static class IbixAtmospherics
     /// </summary>
     public const float CyanogenBurnRateDelta = 15f;
 
-    // =========================================================================
-    // Carbon Chain & Combustion
-    // =========================================================================
-
     /// <summary>
     ///     Energy released per mole of Methane burned (802 kJ/mol).
     ///     [Ibixstation]
@@ -188,10 +164,6 @@ public static class IbixAtmospherics
     /// </summary>
     public const float CO2DecompositionEnergyAbsorbed = FireCOEnergyReleased;
 
-    // =========================================================================
-    // Ammonia Synthesis, Combustion & Decomposition
-    // =========================================================================
-
     /// <summary>
     ///     Energy released per mole of Ammonia burned (383 kJ/mol).
     ///     Produces a relatively weak, slow-burning flame.
@@ -225,10 +197,6 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float AmmoniaDecompositionEnergyAbsorbed = 46200f;
-
-    // =========================================================================
-    // Reverse Water-Gas Shift & Steam Methane Reforming
-    // =========================================================================
 
     /// <summary>
     ///     Reaction rate divisor scaling the per-tick conversion for Reverse Water-Gas Shift.
@@ -265,4 +233,62 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float SteamMethaneReformingEnergyAbsorbed = 206000f;
+
+    /// <summary>
+    ///     Required ratio of Plasma to Methane (2 moles Plasma per 1 mole Methane).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonProductionPlasmaRatio = 2.0f;
+
+    /// <summary>
+    ///     Multiplier used to calculate Nitrogen loss during inefficient synthesis.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonProductionNitrogenLossRatio = 4.5f;
+
+    /// <summary>
+    ///     Required ratio of Nitrogen to Frezon for cooling (5 moles N2 per 1 mole Frezon).
+    ///     5 Oxygen atoms from spent Frezon bind with 10 Nitrogen atoms to form Nitrous Oxide.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonNitrogenCoolRatio = 5.0f;
+
+    /// <summary>
+    ///     Yield multiplier of Nitrous Oxide produced per mole of Frezon spent (5 moles N2O per 1 mole Frezon).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonN2OCoolOutputRatio = 5.0f;
+
+    /// <summary>
+    ///     Energy absorbed per mole of Frezon burned during coolant reaction.
+    ///     Increased significantly to ensure Frezon rapidly drops room/canister temperatures to near-absolute zero
+    ///     despite the heat capacity of generated Nitrous Oxide.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonCoolEnergyReleased = -960000f;
+
+    /// <summary>
+    ///     1 / X of the methane is converted into Frezon each tick
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonProductionConversionRate = 5f;
+
+    /// <summary>
+    ///     Endothermic energy absorbed per mole of Frezon produced to offset
+    ///     injecting 2 moles of Plasma at room temp (293.15K to 73.15K = 88 kJ/mol).
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonProductionEnergyAbsorbed = -48000f;
+
+    /// <summary>
+    ///     The minimum temperature threshold below which Frezon production cooling scale drops to zero.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonProductionCoolingLowerTemperature = 23.15f;
+
+    /// <summary>
+    ///     The target temperature threshold at which Frezon production cooling achieves maximum scale.
+    ///     [Ibixstation]
+    /// </summary>
+    public const float FrezonProductionCoolingMidTemperature = 73.15f;
 }
