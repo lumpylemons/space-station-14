@@ -15,6 +15,10 @@ public sealed partial class HydrogenFireReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        var dynamicIgnitionThreshold = GasReactionHelpers.GetDynamicIgnitionThreshold(mixture, atmosphereSystem);
+        if (mixture.Temperature < dynamicIgnitionThreshold)
+            return ReactionResult.NoReaction;
+
         var energyReleased = 0f;
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
@@ -35,7 +39,7 @@ public sealed partial class HydrogenFireReaction : IGasReactionEffect
             mixture.AdjustMoles(Gas.Oxygen, -oxyBurned);
             mixture.AdjustMoles(Gas.WaterVapor, tritBurned);
 
-            energyReleased = tritBurned * Atmospherics.FireHydrogenEnergyReleased;
+            energyReleased = tritBurned * IbixAtmospherics.FireHydrogenEnergyReleased;
             energyReleased /= heatScale;
             mixture.ReactionResults[(byte)GasReaction.Fire] += tritBurned + oxyBurned;
         }

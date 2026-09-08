@@ -119,4 +119,12 @@ public sealed partial class GasPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool IsOxidizer;
+
+    /// <summary>
+    /// [Ibixstation]
+    /// The absolute minimum auto-ignition temperature (in Kelvin)
+    /// required to kickstart a combustion reaction for this fuel type.
+    /// </summary>
+    [DataField]
+    public float MinIgnitionTemperature = 373.15f; // Defaults to 100°C
 }

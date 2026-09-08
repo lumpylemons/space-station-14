@@ -1,4 +1,5 @@
 using System.Globalization;
+using Content.Server._Ibixstation.Atmos.Reactions;
 using Content.Server.Atmos.Components;
 using Content.Server.Decals;
 using Content.Shared.Atmos;
@@ -220,7 +221,7 @@ public sealed partial class AtmosphereSystem
             return;
         }
 
-        if (exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature && isFlammable)
+        if (isFlammable && exposedTemperature >= GasReactionHelpers.GetDynamicIgnitionThreshold(tile.Air, this)) // [Ibixstation] Sets different minimum combustion temperatures for different gases
         {
             if (sparkSourceUid.HasValue)
             {

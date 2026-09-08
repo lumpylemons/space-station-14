@@ -11,7 +11,7 @@ public static class IbixAtmospherics
     ///     Divisor scaling the base burn rate per tick for Tritium/Hydrogen combustion.
     ///     [Ibixstation]
     /// </summary>
-    public const float HydrogenBurnRateDelta = 10f;
+    public const float HydrogenBurnRateDelta = 2f;
 
     /// <summary>
     ///     Minimum temperature in Kelvin required to initiate endothermic water vapor decomposition.
@@ -35,7 +35,7 @@ public static class IbixAtmospherics
     ///     Reaction rates and constants for Sabatier Reaction.
     ///     [Ibixstation]
     /// </summary>
-    public const float CO2MethanationReactionRate = 20f;
+    public const float CO2MethanationReactionRate = 4f;
 
     /// <summary>
     ///     Energy released per mole of Methane produced (165 kJ/mol).
@@ -47,7 +47,7 @@ public static class IbixAtmospherics
     ///     Reaction rate divisor for CO Methanation.
     ///     [Ibixstation]
     /// </summary>
-    public const float COMethanationReactionRate = 10f;
+    public const float COMethanationReactionRate = 2f;
 
     /// <summary>
     ///     Energy released per mole of Methane produced via CO methanation (206 kJ/mol).
@@ -59,7 +59,7 @@ public static class IbixAtmospherics
     ///     Reaction rate divisor for Water-Gas Shift.
     ///     [Ibixstation]
     /// </summary>
-    public const float WaterGasShiftReactionRate = 25f;
+    public const float WaterGasShiftReactionRate = 3f;
 
     /// <summary>
     ///     Energy released per mole of CO shifted to H2 via water vapor (41 kJ/mol).
@@ -71,7 +71,7 @@ public static class IbixAtmospherics
     ///     Reaction rate divisor scaling the per-tick conversion for oxidative cyanogen synthesis.
     ///     [Ibixstation]
     /// </summary>
-    public const float CyanogenOxidativeReactionRate = 25f;
+    public const float CyanogenOxidativeReactionRate = 4f;
 
     /// <summary>
     ///     Energy released per mole of Cyanogen produced via oxidative synthesis (180 kJ/mol).
@@ -83,7 +83,7 @@ public static class IbixAtmospherics
     ///     Reaction rate divisor scaling the base per-tick conversion for pyrolytic cyanogen synthesis.
     ///     [Ibixstation]
     /// </summary>
-    public const float CyanogenPyrolysisReactionRate = 35f;
+    public const float CyanogenPyrolysisReactionRate = 5f;
 
     /// <summary>
     ///     Arrhenius activation energy constant controlling exponential scaling for thermal pyrolysis.
@@ -101,7 +101,7 @@ public static class IbixAtmospherics
     ///     Reaction rate divisor scaling the per-tick conversion for CO-route cyanogen synthesis.
     ///     [Ibixstation]
     /// </summary>
-    public const float CyanogenCOReactionRate = 30f;
+    public const float CyanogenCOReactionRate = 4.5f;
 
     /// <summary>
     ///     Energy released per mole of Cyanogen produced via carbon monoxide synthesis (45 kJ/mol).
@@ -120,7 +120,7 @@ public static class IbixAtmospherics
     ///     Divisor scaling the base burn rate per tick for Cyanogen combustion.
     ///     [Ibixstation]
     /// </summary>
-    public const float CyanogenBurnRateDelta = 15f;
+    public const float CyanogenBurnRateDelta = 2.2f;
 
     /// <summary>
     ///     Energy released per mole of Methane burned (802 kJ/mol).
@@ -132,7 +132,7 @@ public static class IbixAtmospherics
     ///     Divisor scaling the base burn rate per tick for Methane combustion.
     ///     [Ibixstation]
     /// </summary>
-    public const float MethaneBurnRateDelta = 18f;
+    public const float MethaneBurnRateDelta = 3.5f;
 
     /// <summary>
     ///     Energy released per mole of Carbon Monoxide burned (255 kJ/mol).
@@ -144,7 +144,7 @@ public static class IbixAtmospherics
     ///     Divisor scaling the base burn rate per tick for Carbon Monoxide combustion.
     ///     [Ibixstation]
     /// </summary>
-    public const float COBurnRateDelta = 22f;
+    public const float COBurnRateDelta = 5f;
 
     /// <summary>
     ///     Minimum temperature in Kelvin required to initiate CO2 thermal decomposition.
@@ -176,15 +176,15 @@ public static class IbixAtmospherics
     ///     High value means it burns much slower per tick compared to Methane or Hydrogen.
     ///     [Ibixstation]
     /// </summary>
-    public const float AmmoniaBurnRateDelta = 35f;
+    public const float AmmoniaBurnRateDelta = 20f;
 
-    public const float AmmoniaDecompositionReactionRate = 25f;
+    public const float AmmoniaDecompositionReactionRate = 4f;
 
     /// <summary>
     ///     Reaction rate divisor for Ammonia Synthesis.
     ///     [Ibixstation]
     /// </summary>
-    public const float HighPressureAmmoniaSynthesisReactionRate = 15f;
+    public const float HighPressureAmmoniaSynthesisReactionRate = 3f;
 
     /// <summary>
     ///     Energy released per mole of Ammonia synthesized (46.2 kJ/mol).
@@ -202,7 +202,7 @@ public static class IbixAtmospherics
     ///     Reaction rate divisor scaling the per-tick conversion for Reverse Water-Gas Shift.
     ///     [Ibixstation]
     /// </summary>
-    public const float ReverseWaterGasShiftReactionRate = 25f;
+    public const float ReverseWaterGasShiftReactionRate = 4f;
 
     /// <summary>
     ///     Arrhenius activation energy constant controlling exponential scaling for Reverse Water-Gas Shift.
@@ -220,7 +220,7 @@ public static class IbixAtmospherics
     ///     Reaction rate divisor scaling the per-tick conversion for Steam Methane Reforming.
     ///     [Ibixstation]
     /// </summary>
-    public const float SteamMethaneReformingReactionRate = 18f;
+    public const float SteamMethaneReformingReactionRate = 3.8f;
 
     /// <summary>
     ///     Arrhenius activation energy constant controlling exponential scaling for Steam Methane Reforming.
@@ -271,7 +271,7 @@ public static class IbixAtmospherics
     ///     1 / X of the methane is converted into Frezon each tick
     ///     [Ibixstation]
     /// </summary>
-    public const float FrezonProductionConversionRate = 5f;
+    public const float FrezonProductionConversionRate = 8f;
 
     /// <summary>
     ///     Endothermic energy absorbed per mole of Frezon produced to offset
@@ -301,4 +301,7 @@ public static class IbixAtmospherics
     ///     Moles of O2 consumed per mole of Plasma during tritium supersaturation.
     /// </summary>
     public const float PlasmaOxygenBurnRatioTritium = 1.0f;
+    public const float PlasmaBurnRateDelta = 1.6f;
+    public const float FirePlasmaEnergyReleased = 181000f;  // (261 kJ/mol)
+    public const float FireHydrogenEnergyReleased = 286000f; // (286 kJ/mol)
 }

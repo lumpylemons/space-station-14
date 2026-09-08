@@ -61,6 +61,7 @@
   reagent: Tritium
   pricePerMole: 2.5
   isFuel: true
+  minIgnitionTemperature: 773.15 # [Ibixstation]
 
 - type: gas
   id: WaterVapor
@@ -92,6 +93,7 @@
   reagent: Ammonia
   pricePerMole: 0.15
   isFuel: true # [Ibixstation]
+  minIgnitionTemperature: 924.15 # [Ibixstation]
 
 - type: gas
   id: NitrousOxide

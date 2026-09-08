@@ -10,6 +10,7 @@
   reagent: Hydrogen
   pricePerMole: 0.10
   isFuel: true
+  minIgnitionTemperature: 773.15
 
 - type: gas
   id: Methane
@@ -23,6 +24,7 @@
   reagent: Methane
   pricePerMole: 0.15
   isFuel: true
+  minIgnitionTemperature: 810.15
 
 - type: gas
   id: CarbonMonoxide
@@ -35,6 +37,7 @@
   reagent: CarbonMonoxide
   pricePerMole: 0
   isFuel: true
+  minIgnitionTemperature: 882.15
 
 - type: gas
   id: Cyanogen
@@ -48,3 +51,4 @@
   reagent: Cyanogen
   pricePerMole: 0.45
   isFuel: true
+  minIgnitionTemperature: 1123.15

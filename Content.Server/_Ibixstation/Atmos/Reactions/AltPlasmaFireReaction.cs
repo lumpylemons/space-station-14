@@ -13,6 +13,10 @@ namespace Content.Server._Ibixstation.Atmos.Reactions
     {
         public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
         {
+            var dynamicIgnitionThreshold = GasReactionHelpers.GetDynamicIgnitionThreshold(mixture, atmosphereSystem);
+            if (mixture.Temperature < dynamicIgnitionThreshold)
+                return ReactionResult.NoReaction;
+
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
@@ -53,9 +57,9 @@ namespace Content.Server._Ibixstation.Atmos.Reactions
                 var plasmaBurnRate = 0f;
 
                 if (initialOxygenMoles > initialPlasmaMoles * Atmospherics.PlasmaOxygenFullburn)
-                    plasmaBurnRate = initialPlasmaMoles * temperatureScale / Atmospherics.PlasmaBurnRateDelta;
+                    plasmaBurnRate = initialPlasmaMoles * temperatureScale / IbixAtmospherics.PlasmaBurnRateDelta;
                 else
-                    plasmaBurnRate = temperatureScale * (initialOxygenMoles / Atmospherics.PlasmaOxygenFullburn) / Atmospherics.PlasmaBurnRateDelta;
+                    plasmaBurnRate = temperatureScale * (initialOxygenMoles / Atmospherics.PlasmaOxygenFullburn) / IbixAtmospherics.PlasmaBurnRateDelta;
 
                 if (plasmaBurnRate > Atmospherics.MinimumHeatCapacity)
                 {
@@ -68,7 +72,7 @@ namespace Content.Server._Ibixstation.Atmos.Reactions
                     mixture.AdjustMoles(Gas.Hydrogen, plasmaBurnRate * 2f * supersaturation);
                     mixture.AdjustMoles(Gas.CarbonDioxide, plasmaBurnRate * 2f * (1.0f - supersaturation));
 
-                    energyReleased += Atmospherics.FirePlasmaEnergyReleased * plasmaBurnRate;
+                    energyReleased += IbixAtmospherics.FirePlasmaEnergyReleased * plasmaBurnRate;
                     energyReleased /= heatScale; // adjust energy to make sure speedup doesn't cause mega temperature rise
                     mixture.ReactionResults[(byte)GasReaction.Fire] += plasmaBurnRate * (1.0f + oxygenBurnRate);
                 }

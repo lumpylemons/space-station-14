@@ -12,6 +12,10 @@ public sealed partial class CarbonMonoxideFireReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        var dynamicIgnitionThreshold = GasReactionHelpers.GetDynamicIgnitionThreshold(mixture, atmosphereSystem);
+        if (mixture.Temperature < dynamicIgnitionThreshold)
+            return ReactionResult.NoReaction;
+
         var energyReleased = 0f;
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
