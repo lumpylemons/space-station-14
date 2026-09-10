@@ -1,3 +1,4 @@
+using Content.Shared._Ibixstation.Atmos.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
@@ -122,9 +123,8 @@ public sealed partial class GasPrototype : IPrototype
 
     /// <summary>
     /// [Ibixstation]
-    /// The absolute minimum auto-ignition temperature (in Kelvin)
-    /// required to kickstart a combustion reaction for this fuel type.
+    /// The specific combustion and behavior parameters used when this gas burns as a fuel.
     /// </summary>
     [DataField]
-    public float MinIgnitionTemperature = 373.15f; // Defaults to 100°C
+    public GasFuelProperties? FuelProperties;
 }

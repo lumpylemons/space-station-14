@@ -221,28 +221,44 @@ public sealed partial class AtmosphereSystem
             return;
         }
 
-        if (isFlammable && exposedTemperature >= GasReactionHelpers.GetDynamicIgnitionThreshold(tile.Air, this)) // [Ibixstation] Sets different minimum combustion temperatures for different gases
+        // [Ibixstation] add support for dynamic ignition temperatures
+        if (isFlammable)
         {
-            if (sparkSourceUid.HasValue)
+            // Calculate the base autoignition limit
+            var ignitionThreshold = GasReactionHelpers.GetDynamicIgnitionThreshold(tile.Air, this);
+
+            // If this exposure is coming from an adjacent tile fire (sparkSourceUid is null),
+            // drop the required ignition threshold to better simulate cascading combustion.
+            if (sparkSourceUid == null && ignitionThreshold > Atmospherics.FireMinimumTemperatureToExist)
             {
-                _adminLog.Add(LogType.Flammable,
-                    LogImpact.High,
-                    $"Heat/spark of {ToPrettyString(sparkSourceUid.Value)} caused atmos ignition of gas: " +
-                    $"{tile.Air.ToPrettyString()}");
+                ignitionThreshold = Atmospherics.FireMinimumTemperatureToExist;
             }
 
-            tile.Hotspot = new Hotspot
+            // Evaluate using the newly adjusted threshold
+            if (exposedTemperature >= ignitionThreshold)
             {
-                Volume = exposedVolume * 25f,
-                Temperature = exposedTemperature,
-                SkippedFirstProcess = tile.CurrentCycle > gridAtmosphere.UpdateCounter,
-                Valid = true,
-                State = 1
-            };
+                if (sparkSourceUid.HasValue)
+                {
+                    _adminLog.Add(LogType.Flammable,
+                        LogImpact.High,
+                        $"Heat/spark of {ToPrettyString(sparkSourceUid.Value)} caused atmos ignition of gas: " +
+                        $"{tile.Air.ToPrettyString()}");
+                }
 
-            AddActiveTile(gridAtmosphere, tile);
-            gridAtmosphere.HotspotTiles.Add(tile);
+                tile.Hotspot = new Hotspot
+                {
+                    Volume = exposedVolume * 25f,
+                    Temperature = exposedTemperature,
+                    SkippedFirstProcess = tile.CurrentCycle > gridAtmosphere.UpdateCounter,
+                    Valid = true,
+                    State = 1
+                };
+
+                AddActiveTile(gridAtmosphere, tile);
+                gridAtmosphere.HotspotTiles.Add(tile);
+            }
         }
+        // [Ibixstation] end
     }
 
     /// <summary>

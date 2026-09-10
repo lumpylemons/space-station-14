@@ -5,17 +5,7 @@
   minimumRequirements:
     WaterVapor: 0.01
   effects:
-    - !type:WaterVaporDecompositionReaction {}
-
-- type: gasReaction
-  id: HydrogenFire
-  priority: -1
-  minimumTemperature: 373.149
-  minimumRequirements:
-    Oxygen: 0.01
-    Hydrogen: 0.01
-  effects:
-  - !type:HydrogenFireReaction {}
+    - !type:WaterDecompositionReaction {}
 
 - type: gasReaction
   id: CO2Methanation
@@ -26,26 +16,6 @@
     Hydrogen: 0.01
   effects:
     - !type:CO2MethanationReaction {}
-
-- type: gasReaction
-  id: MethaneFire
-  priority: -1
-  minimumTemperature: 373.149
-  minimumRequirements:
-    Oxygen: 0.01
-    Methane: 0.01
-  effects:
-    - !type:MethaneFireReaction {}
-
-- type: gasReaction
-  id: CarbonMonoxideFire
-  priority: -1
-  minimumTemperature: 373.149
-  minimumRequirements:
-    Oxygen: 0.01
-    CarbonMonoxide: 0.01
-  effects:
-    - !type:CarbonMonoxideFireReaction {}
 
 - type: gasReaction
   id: CarbonDioxideDecomposition
@@ -108,26 +78,6 @@
     - !type:CyanogenCOSynthesisReaction {}
 
 - type: gasReaction
-  id: CyanogenFire
-  priority: -1
-  minimumTemperature: 373.149
-  minimumRequirements:
-    Oxygen: 0.01
-    Cyanogen: 0.01
-  effects:
-    - !type:CyanogenFireReaction {}
-
-- type: gasReaction
-  id: AmmoniaFire
-  priority: -1
-  minimumTemperature: 373.149
-  minimumRequirements:
-    Oxygen: 0.01
-    Ammonia: 0.01
-  effects:
-    - !type:AmmoniaFireReaction {}
-
-- type: gasReaction
   id: HighPressureAmmoniaSynthesis
   priority: 2
   minimumTemperature: 673.15
@@ -186,3 +136,12 @@
     Nitrogen: 0.01
   effects:
     - !type:AltFrezonCoolantReaction {}
+
+- type: gasReaction
+  id: Fire
+  priority: -1
+  minimumTemperature: 373.149
+  requiresOxidizer: true
+  requiresFuel: true
+  effects:
+  - !type:FireReaction {}

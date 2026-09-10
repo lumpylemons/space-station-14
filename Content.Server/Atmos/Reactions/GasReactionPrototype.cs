@@ -66,5 +66,20 @@ namespace Content.Server.Atmos.Reactions
 
             return result;
         }
+
+        /// <summary>
+        ///     [Ibixstation]
+        ///     Whether this reaction requires an oxidizer gas to be present in the mixture to trigger.
+        /// </summary>
+        [DataField("requiresOxidizer")]
+        public bool RequiresOxidizer { get; private set; } = false;
+
+        /// <summary>
+        ///     [Ibixstation]
+        ///     Whether this reaction requires a fuel gas to be present in the mixture to trigger.
+        /// </summary>
+        [DataField("requiresFuel")]
+        public bool RequiresFuel { get; private set; } = false;
+
     }
 }

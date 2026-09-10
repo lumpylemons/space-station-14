@@ -10,7 +10,18 @@
   reagent: Hydrogen
   pricePerMole: 0.10
   isFuel: true
-  minIgnitionTemperature: 773.15
+  fuelProperties:
+    minIgnitionTemperature: 773.15
+    burnRateDelta: 8
+    energyReleased: 286000
+    oxygenRatio: 0.5
+    dissociationOnsetTemperature: 2000
+    maxFlameTemperature: 3357.15
+    standardProducts:
+      WaterVapor: 1
+    dissociationProducts:
+      Hydrogen: 1
+      Oxygen: 0.5
 
 - type: gas
   id: Methane
@@ -24,7 +35,20 @@
   reagent: Methane
   pricePerMole: 0.15
   isFuel: true
-  minIgnitionTemperature: 810.15
+  fuelProperties:
+    minIgnitionTemperature: 810.15
+    burnRateDelta: 10
+    energyReleased: 286000
+    oxygenRatio: 2
+    dissociationOnsetTemperature: 2000
+    maxFlameTemperature: 3056.15
+    standardProducts:
+      WaterVapor: 2
+      CarbonDioxide: 1
+    dissociationProducts:
+      Hydrogen: 2
+      CarbonMonoxide: 1
+      Oxygen: 0.5
 
 - type: gas
   id: CarbonMonoxide
@@ -37,7 +61,18 @@
   reagent: CarbonMonoxide
   pricePerMole: 0
   isFuel: true
-  minIgnitionTemperature: 882.15
+  fuelProperties:
+    minIgnitionTemperature: 882.15
+    burnRateDelta: 12
+    energyReleased: 286000
+    oxygenRatio: 0.5
+    dissociationOnsetTemperature: 2000
+    maxFlameTemperature: 3263.15
+    standardProducts:
+      CarbonDioxide: 1
+    dissociationProducts:
+      Oxygen: 0.5
+      CarbonMonoxide: 1
 
 - type: gas
   id: Cyanogen
@@ -51,4 +86,17 @@
   reagent: Cyanogen
   pricePerMole: 0.45
   isFuel: true
-  minIgnitionTemperature: 1123.15
+  fuelProperties:
+    minIgnitionTemperature: 1123.15
+    burnRateDelta: 11
+    energyReleased: 286000
+    oxygenRatio: 2
+    dissociationOnsetTemperature: 3000
+    maxFlameTemperature: 5063.15
+    standardProducts:
+      Nitrogen: 1
+      CarbonDioxide: 2
+    dissociationProducts:
+      Nitrogen: 1
+      CarbonMonoxide: 2
+      Oxygen: 1

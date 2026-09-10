@@ -46,6 +46,17 @@
   reagent: Plasma
   pricePerMole: 0
   isFuel: true
+  fuelProperties:
+    burnRateDelta: 8
+    energyReleased: 181000
+    oxygenRatio: 2
+    dissociationOnsetTemperature: 2300
+    maxFlameTemperature: 2883.15
+    standardProducts:
+      CarbonDioxide: 2
+    dissociationProducts:
+      CarbonMonoxide: 2
+      Oxygen: 1
 
 - type: gas
   id: Tritium
@@ -61,13 +72,24 @@
   reagent: Tritium
   pricePerMole: 2.5
   isFuel: true
-  minIgnitionTemperature: 773.15 # [Ibixstation]
+  fuelProperties: # [Ibixstation]
+    minIgnitionTemperature: 773.15
+    burnRateDelta: 8
+    energyReleased: 286000
+    oxygenRatio: 0.5
+    dissociationOnsetTemperature: 2000
+    maxFlameTemperature: 3357.15
+    standardProducts:
+      WaterVapor: 1
+    dissociationProducts:
+      Hydrogen: 1
+      Oxygen: 0.5
 
 - type: gas
   id: WaterVapor
   name: gas-water-vapor
   abbreviation: gas-water-vapor-abbreviation
-  molarHeatCapacity: 40
+  molarHeatCapacity: 43.3
   heatCapacityRatio: 1.33
   molarMass: 18
   gasOverlaySprite:
@@ -93,7 +115,20 @@
   reagent: Ammonia
   pricePerMole: 0.15
   isFuel: true # [Ibixstation]
-  minIgnitionTemperature: 924.15 # [Ibixstation]
+  fuelProperties: # [Ibixstation]
+    minIgnitionTemperature: 924.15
+    burnRateDelta: 14
+    energyReleased: 383000
+    oxygenRatio: 0.75
+    dissociationOnsetTemperature: 1800
+    maxFlameTemperature: 2863.15
+    standardProducts:
+      Nitrogen: 0.5
+      WaterVapor: 1.5
+    dissociationProducts:
+      Nitrogen: 0.5
+      Hydrogen: 1.5
+      Oxygen: 0.75
 
 - type: gas
   id: NitrousOxide

@@ -11,8 +11,7 @@ public static class GasReactionHelpers
     /// </summary>
     public static float GetDynamicIgnitionThreshold(GasMixture mixture, SharedAtmosphereSystem atmosSystem)
     {
-        float lowestThreshold = float.MaxValue;
-        bool fuelFound = false;
+        float lowestThreshold = Atmospherics.PlasmaMinimumBurnTemperature;
 
         // Iterate through all possible gases using the public accessor
         for (int i = 0; i < Atmospherics.TotalNumberOfGases; i++)
@@ -27,16 +26,13 @@ public static class GasReactionHelpers
             // Check if the gas is a reactive fuel profile
             if (gasProto.IsFuel)
             {
-                fuelFound = true;
-                if (gasProto.MinIgnitionTemperature < lowestThreshold)
+                if (gasProto.FuelProperties?.MinIgnitionTemperature < lowestThreshold)
                 {
-                    lowestThreshold = gasProto.MinIgnitionTemperature;
+                    lowestThreshold = gasProto.FuelProperties?.MinIgnitionTemperature ?? lowestThreshold;
                 }
             }
         }
 
-        // Return easiest barrier to break, or fall back to system default if for some reason no fuel is found
-        return fuelFound ? lowestThreshold : Atmospherics.PlasmaMinimumBurnTemperature;
+        return lowestThreshold;
     }
 }
-

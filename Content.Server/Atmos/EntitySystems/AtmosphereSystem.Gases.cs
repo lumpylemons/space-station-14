@@ -294,6 +294,13 @@ namespace Content.Server.Atmos.EntitySystems
                     temperature > prototype.MaximumTemperatureRequirement)
                     continue;
 
+                // [Ibixstation] Fuel and oxidizer checks for generic fire reaction
+                if (prototype.RequiresOxidizer && !IsMixtureOxidizer(mixture))
+                    continue;
+                if (prototype.RequiresFuel && !IsMixtureFuel(mixture))
+                    continue;
+                // [Ibixstation] end
+
                 var doReaction = true;
                 for (var i = 0; i < Atmospherics.TotalNumberOfGases; i++)
                 {
