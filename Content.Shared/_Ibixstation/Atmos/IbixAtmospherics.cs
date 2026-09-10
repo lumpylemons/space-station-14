@@ -8,18 +8,6 @@ namespace Content.Shared._Ibixstation.Atmos;
 public static class IbixAtmospherics
 {
     /// <summary>
-    ///     Divisor scaling the base burn rate per tick for Tritium/Hydrogen combustion.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float HydrogenBurnRateDelta = 2f;
-
-    /// <summary>
-    ///     Minimum temperature in Kelvin required to initiate endothermic water vapor decomposition.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float WaterDecompositionMinTemp = 1800f;
-
-    /// <summary>
     ///     Arrhenius activation energy constant controlling the exponential rate scaling of water decomposition.
     ///     [Ibixstation]
     /// </summary>
@@ -110,73 +98,10 @@ public static class IbixAtmospherics
     public const float CyanogenCOEnergyReleased = 45000f;
 
     /// <summary>
-    ///     Energy released per mole of Cyanogen burned (1095 kJ/mol).
-    ///     Generates an extremely hot, hyper-exothermic clean flame.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float FireCyanogenEnergyReleased = 1095000f;
-
-    /// <summary>
-    ///     Divisor scaling the base burn rate per tick for Cyanogen combustion.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float CyanogenBurnRateDelta = 2.2f;
-
-    /// <summary>
-    ///     Energy released per mole of Methane burned (802 kJ/mol).
-    ///     [Ibixstation]
-    /// </summary>
-    public const float FireMethaneEnergyReleased = 802000f;
-
-    /// <summary>
-    ///     Divisor scaling the base burn rate per tick for Methane combustion.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float MethaneBurnRateDelta = 3.5f;
-
-    /// <summary>
-    ///     Energy released per mole of Carbon Monoxide burned (255 kJ/mol).
-    ///     [Ibixstation]
-    /// </summary>
-    public const float FireCOEnergyReleased = 255000f;
-
-    /// <summary>
-    ///     Divisor scaling the base burn rate per tick for Carbon Monoxide combustion.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float COBurnRateDelta = 5f;
-
-    /// <summary>
-    ///     Minimum temperature in Kelvin required to initiate CO2 thermal decomposition.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float CO2DecompositionMinTemp = 1815.15f;
-
-    /// <summary>
     ///     Arrhenius activation energy constant controlling the exponential rate scaling of CO2 decomposition.
     ///     [Ibixstation]
     /// </summary>
     public const float CO2DecompositionActivationEnergy = 8140f;
-
-    /// <summary>
-    ///     Amount of energy absorbed per mole of decomposed CO2.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float CO2DecompositionEnergyAbsorbed = FireCOEnergyReleased;
-
-    /// <summary>
-    ///     Energy released per mole of Ammonia burned (383 kJ/mol).
-    ///     Produces a relatively weak, slow-burning flame.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float FireAmmoniaEnergyReleased = 383000f;
-
-    /// <summary>
-    ///     Divisor scaling the base burn rate per tick for Ammonia combustion.
-    ///     High value means it burns much slower per tick compared to Methane or Hydrogen.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float AmmoniaBurnRateDelta = 20f;
 
     public const float AmmoniaDecompositionReactionRate = 4f;
 
@@ -241,12 +166,6 @@ public static class IbixAtmospherics
     public const float FrezonProductionPlasmaRatio = 2.0f;
 
     /// <summary>
-    ///     Multiplier used to calculate Nitrogen loss during inefficient synthesis.
-    ///     [Ibixstation]
-    /// </summary>
-    public const float FrezonProductionNitrogenLossRatio = 4.5f;
-
-    /// <summary>
     ///     Required ratio of Nitrogen to Frezon for cooling (5 moles N2 per 1 mole Frezon).
     ///     5 Oxygen atoms from spent Frezon bind with 10 Nitrogen atoms to form Nitrous Oxide.
     ///     [Ibixstation]
@@ -291,17 +210,4 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float FrezonProductionCoolingMidTemperature = 73.15f;
-
-    /// <summary>
-    ///     Moles of O2 consumed per mole of Plasma during carbon dioxide production.
-    /// </summary>
-    public const float PlasmaOxygenBurnRatioCarbonDioxide = 2.0f;
-
-    /// <summary>
-    ///     Moles of O2 consumed per mole of Plasma during tritium supersaturation.
-    /// </summary>
-    public const float PlasmaOxygenBurnRatioTritium = 1.0f;
-    public const float PlasmaBurnRateDelta = 1.6f;
-    public const float FirePlasmaEnergyReleased = 181000f;  // (261 kJ/mol)
-    public const float FireHydrogenEnergyReleased = 286000f; // (286 kJ/mol)
 }

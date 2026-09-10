@@ -9,6 +9,8 @@
   reagent: Oxygen
   pricePerMole: 0
   isOxidizer: true
+  oxidizerProperties: # [Ibixstation]
+    power: 1
 
 - type: gas
   id: Nitrogen
@@ -127,8 +129,7 @@
       WaterVapor: 1.5
     dissociationProducts:
       Nitrogen: 0.5
-      Hydrogen: 1.5
-      Oxygen: 0.75
+      WaterVapor: 1.5
 
 - type: gas
   id: NitrousOxide
@@ -140,6 +141,11 @@
   color: '#8F00FF'
   reagent: NitrousOxide
   pricePerMole: 0.1
+  isOxidizer: true
+  oxidizerProperties: # [Ibixstation]
+    power: 0.5
+    byproducts:
+      Nitrogen: 1
 
 - type: gas
   id: Frezon

@@ -123,6 +123,13 @@ public sealed partial class GasPrototype : IPrototype
 
     /// <summary>
     /// [Ibixstation]
+    /// The specific combustion and behavior parameters used when this gas burns as an oxidizer.
+    /// </summary>
+    [DataField]
+    public GasOxidizerProperties? OxidizerProperties;
+
+    /// <summary>
+    /// [Ibixstation]
     /// The specific combustion and behavior parameters used when this gas burns as a fuel.
     /// </summary>
     [DataField]
