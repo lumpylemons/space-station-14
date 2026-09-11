@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 namespace Content.Server._Ibixstation.Atmos.Reactions;
 
 [UsedImplicitly]
-public sealed partial class CyanogenCOSynthesisReaction : IGasReactionEffect
+public sealed partial class COAmmoniaCyanogenSynthesisReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
@@ -16,24 +16,20 @@ public sealed partial class CyanogenCOSynthesisReaction : IGasReactionEffect
         var nAmmonia = mixture.GetMoles(Gas.Ammonia);
         var nTotal = mixture.TotalMoles;
 
-        var maxByCO = nCO / 2f;
-        var maxByAmmonia = nAmmonia / 2f;
-
-        var reactingUnits = MathF.Min(maxByCO, maxByAmmonia);
+        var maxCOByAmmonia = nAmmonia;
+        var reactingCO = MathF.Min(nCO, maxCOByAmmonia);
 
         var fCO = nCO / nTotal;
         var fAmmonia = nAmmonia / nTotal;
 
-        var limitingFraction = MathF.Min(fCO, fAmmonia);
-        var tempFactor = MathF.Max(1f, mixture.Temperature / 1000f);
+        var collisionRate = fCO * fAmmonia;
 
-        var rate = limitingFraction * tempFactor;
-        var deltaCyanogen = reactingUnits / IbixAtmospherics.CyanogenCOReactionRate * rate;
+        var deltaCO = (reactingCO / IbixAtmospherics.COAmmoniaCyanogenSynthesisReactionRate) * collisionRate;
 
-        var deltaCO = deltaCyanogen * 2f;
-        var deltaAmmonia = deltaCyanogen * 2f;
-        var deltaWater = deltaCyanogen * 2f;
-        var deltaHydrogen = deltaCyanogen;
+        var deltaAmmonia = deltaCO;
+        var deltaCyanogen = deltaCO / 2f;
+        var deltaWater = deltaCO;
+        var deltaHydrogen = deltaCO;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
 
@@ -43,15 +39,15 @@ public sealed partial class CyanogenCOSynthesisReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.WaterVapor, deltaWater);
         mixture.AdjustMoles(Gas.Hydrogen, deltaHydrogen);
 
-        var energyReleased = deltaCyanogen * IbixAtmospherics.CyanogenCOEnergyReleased;
-        energyReleased /= heatScale;
+        var energyAbsorbed = deltaCyanogen * IbixAtmospherics.COAmmoniaCyanogenSynthesisEnergyAbsorbed;
+        energyAbsorbed /= heatScale;
 
-        if (energyReleased > 0f)
+        if (energyAbsorbed > 0f)
         {
             var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
             {
-                mixture.Temperature = (mixture.Temperature * oldHeatCapacity + energyReleased) / newHeatCapacity;
+                mixture.Temperature = (mixture.Temperature * oldHeatCapacity - energyAbsorbed) / newHeatCapacity;
             }
         }
 

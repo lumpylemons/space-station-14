@@ -1,6 +1,6 @@
 - type: gasReaction
   id: CO2Methanation
-  priority: 2
+  priority: 6
   minimumTemperature: 523.15
   minimumRequirements:
     CarbonDioxide: 0.01
@@ -9,9 +9,19 @@
     - !type:CO2MethanationReaction {}
 
 - type: gasReaction
-  id: COMethanation
+  id: COAmmoniaCyanogenSynthesis
   priority: 2
-  minimumTemperature: 473.15 # (CO methanation initiates slightly lower than CO2)
+  minimumTemperature: 973.15
+  minimumRequirements:
+    CarbonMonoxide: 0.01
+    Ammonia: 0.01
+  effects:
+    - !type:COAmmoniaCyanogenSynthesisReaction {}
+
+- type: gasReaction
+  id: COMethanation
+  priority: 7
+  minimumTemperature: 473.15
   minimumRequirements:
     CarbonMonoxide: 0.01
     Hydrogen: 0.01
@@ -20,7 +30,7 @@
 
 - type: gasReaction
   id: WaterGasShift
-  priority: 3
+  priority: 8
   minimumTemperature: 573.15
   minimumRequirements:
     CarbonMonoxide: 0.01
@@ -29,49 +39,8 @@
     - !type:WaterGasShiftReaction {}
 
 - type: gasReaction
-  id: CyanogenOxidativeSynthesis
-  priority: -2
-  minimumTemperature: 1073.15
-  minimumRequirements:
-    Methane: 0.01
-    Ammonia: 0.01
-    Oxygen: 0.01
-  effects:
-    - !type:CyanogenOxidativeSynthesisReaction {}
-
-- type: gasReaction
-  id: CyanogenPyrolyticSynthesis
-  priority: -2
-  minimumTemperature: 1273.15
-  minimumRequirements:
-    Methane: 0.01
-    Ammonia: 0.01
-  effects:
-    - !type:CyanogenPyrolyticSynthesisReaction {}
-
-- type: gasReaction
-  id: CyanogenCOSynthesis
-  priority: -2
-  minimumTemperature: 973.15
-  minimumRequirements:
-    CarbonMonoxide: 0.01
-    Ammonia: 0.01
-  effects:
-    - !type:CyanogenCOSynthesisReaction {}
-
-- type: gasReaction
-  id: HighPressureAmmoniaSynthesis
-  priority: 2
-  minimumTemperature: 673.15
-  minimumRequirements:
-    Nitrogen: 0.01
-    Hydrogen: 0.01
-  effects:
-    - !type:HighPressureAmmoniaSynthesisReaction {}
-
-- type: gasReaction
   id: ReverseWaterGasShift
-  priority: 1
+  priority: 6
   minimumTemperature: 600.15
   minimumRequirements:
     CarbonDioxide: 0.01
@@ -80,18 +49,48 @@
     - !type:ReverseWaterGasShiftReaction {}
 
 - type: gasReaction
-  id: SteamMethaneReforming
-  priority: 1
+  id: MethaneSteamReforming
+  priority: 5
   minimumTemperature: 650.15
   minimumRequirements:
     Methane: 0.01
     WaterVapor: 0.01
   effects:
-    - !type:SteamMethaneReformingReaction {}
+    - !type:MethaneSteamReformingReaction {}
+
+- type: gasReaction
+  id: HaberBoschSynthesis
+  priority: 5
+  minimumTemperature: 673.15
+  minimumRequirements:
+    Nitrogen: 0.01
+    Hydrogen: 0.01
+  effects:
+    - !type:HaberBoschSynthesisReaction {}
+
+- type: gasReaction
+  id: MethaneAmmoniaCyanogenSynthesis
+  priority: 1
+  minimumTemperature: 1273.15
+  minimumRequirements:
+    Methane: 0.01
+    Ammonia: 0.01
+  effects:
+    - !type:MethaneAmmoniaCyanogenSynthesisReaction {}
+
+- type: gasReaction
+  id: CyanogenHydrolysis
+  priority: 9
+  minimumTemperature: 293.15
+  minimumRequirements:
+    Cyanogen: 0.01
+    WaterVapor: 0.01
+  effects:
+    - !type:CyanogenHydrolysisReaction {}
 
 - type: gasReaction
   id: AltFrezonProduction
-  priority: 0
+  priority: 4
   maximumTemperature: 73.15
   minimumRequirements:
     Methane: 0.01
@@ -102,13 +101,21 @@
 
 - type: gasReaction
   id: AltFrezonCoolant
-  priority: -1
+  priority: 3
   minimumTemperature: 23.15
   minimumRequirements:
     Frezon: 0.01
     Nitrogen: 0.01
   effects:
     - !type:AltFrezonCoolantReaction {}
+
+- type: gasReaction
+  id: HydrogenTritiumRadiation
+  priority: 5
+  minimumRequirements:
+    Hydrogen: 0.01
+  effects:
+    - !type:HydrogenTritiumRadiationReaction {}
 
 - type: gasReaction
   id: Fire
@@ -121,7 +128,7 @@
 
 - type: gasReaction
   id: ThermalCracking
-  priority: -10 # Should always run last in a tick
+  priority: 0 # Should always run last in a tick
   minimumTemperature: 773.149
   requiresCrackable: true
   effects:

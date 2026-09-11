@@ -17,16 +17,6 @@ public sealed partial class AltFrezonProductionReaction : IGasReactionEffect
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
         var temperature = mixture.Temperature;
-
-        // SS14 standard ramp scaling
-        var scale = (temperature - IbixAtmospherics.FrezonProductionCoolingLowerTemperature) /
-                    (IbixAtmospherics.FrezonProductionCoolingMidTemperature - IbixAtmospherics.FrezonProductionCoolingLowerTemperature);
-
-        if (scale <= 0f)
-            return ReactionResult.NoReaction;
-
-        scale = Math.Min(1f, scale);
-
         var initialN2 = mixture.GetMoles(Gas.Nitrogen);
         var initialMethane = mixture.GetMoles(Gas.Methane);
         var initialPlasma = mixture.GetMoles(Gas.Plasma);
@@ -37,25 +27,17 @@ public sealed partial class AltFrezonProductionReaction : IGasReactionEffect
         // How much the catalyst (N2) will allow us to produce
         // Less N2 is required the more efficient it is.
         var catalystLimit = initialN2 * (Atmospherics.FrezonProductionNitrogenRatio / efficiency);
-        var methaneLimitByPlasma = initialPlasma / IbixAtmospherics.FrezonProductionPlasmaRatio;
+        var methaneLimit = Math.Min(initialPlasma, catalystLimit) / Atmospherics.FrezonProductionTritRatio;
 
         // Amount of methane & plasma that are reacting
-        var methaneBurned = Math.Min(initialMethane, Math.Min(methaneLimitByPlasma, catalystLimit));
+        var methaneBurned = Math.Min(initialMethane, Math.Min(methaneLimit, catalystLimit));
         var plasmaBurned = methaneBurned * IbixAtmospherics.FrezonProductionPlasmaRatio;
 
         var methaneConversion = methaneBurned / IbixAtmospherics.FrezonProductionConversionRate;
         var plasmaConversion = plasmaBurned / IbixAtmospherics.FrezonProductionConversionRate;
 
-        if (methaneConversion <= 0f)
-            return ReactionResult.NoReaction;
-
-        // 1 mole of Methane converts to 1 mole of Frezon at 100% efficiency
         var frezonProduced = methaneConversion * efficiency;
-
-        // Each lost mole batch produces 4.5 moles of N2 (9 atoms)
-        var lossProduced = (methaneConversion * loss) * 4.5f;
-
-        // 1 mole of CH4 yields 2 moles of H2 gas (4 Hydrogen atoms stripped off)
+        var lossProduced = methaneConversion * loss * 2.5f;
         var hydrogenProduced = methaneConversion * 2.0f;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
@@ -67,7 +49,7 @@ public sealed partial class AltFrezonProductionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Hydrogen, hydrogenProduced);
 
         // Apply temperature scale directly to cooling energy
-        var energyReleased = frezonProduced * IbixAtmospherics.FrezonProductionEnergyAbsorbed * scale;
+        var energyReleased = frezonProduced * IbixAtmospherics.FrezonProductionEnergyAbsorbed;
         energyReleased /= heatScale;
 
         if (energyReleased < 0f)

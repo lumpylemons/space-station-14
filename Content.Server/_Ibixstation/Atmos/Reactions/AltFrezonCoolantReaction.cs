@@ -31,13 +31,12 @@ public sealed partial class AltFrezonCoolantReaction : IGasReactionEffect
         }
         else if (scale > 0f)
         {
-            // Apply a square-root curve so the scale does not collapse at sub-zero temperatures.
-            // Keeps burn throughput high enough to reach 23.15 K without burning through excess Nitrogen.
-            scale = MathF.Sqrt(scale);
+            scale = MathF.Sqrt(scale) * scale;
         }
-
-        if (scale <= 0f)
+        else
+        {
             return ReactionResult.NoReaction;
+        }
 
         var initialNit = mixture.GetMoles(Gas.Nitrogen);
         var initialFrezon = mixture.GetMoles(Gas.Frezon);

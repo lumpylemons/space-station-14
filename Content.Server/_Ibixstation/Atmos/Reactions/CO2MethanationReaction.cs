@@ -12,6 +12,9 @@ public sealed partial class CO2MethanationReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        if (mixture.Pressure < IbixAtmospherics.CO2MethanationMinimumPressure)
+            return ReactionResult.NoReaction;
+
         var nCO2 = mixture.GetMoles(Gas.CarbonDioxide);
         var nH2 = mixture.GetMoles(Gas.Hydrogen);
         var nTotal = mixture.TotalMoles;
@@ -22,9 +25,11 @@ public sealed partial class CO2MethanationReaction : IGasReactionEffect
         var fCO2 = nCO2 / nTotal;
         var fHydrogen = nH2 / nTotal;
 
-        var limitingFraction = MathF.Min(fCO2, fHydrogen);
+        var collisionRate = fCO2 * fHydrogen;
 
-        var deltaCO2 = (reactingCO2 / IbixAtmospherics.CO2MethanationReactionRate) * limitingFraction;
+        collisionRate *= (mixture.Pressure / Atmospherics.OneAtmosphere);
+
+        var deltaCO2 = (reactingCO2 / IbixAtmospherics.CO2MethanationReactionRate) * collisionRate;
 
         var deltaHydrogen = deltaCO2 * 4f;
         var deltaMethane = deltaCO2;

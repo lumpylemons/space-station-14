@@ -16,23 +16,31 @@ public sealed partial class WaterGasShiftReaction : IGasReactionEffect
         var nWater = mixture.GetMoles(Gas.WaterVapor);
         var nTotal = mixture.TotalMoles;
 
-        var reactingMoles = MathF.Min(nCO, nWater);
+        var maxCOByWater = nWater;
+        var reactingCO = MathF.Min(nCO, maxCOByWater);
 
         var fCO = nCO / nTotal;
         var fWater = nWater / nTotal;
 
-        var limitingFraction = MathF.Min(fCO, fWater);
+        var collisionRate = fCO * fWater;
 
-        var shiftRate = reactingMoles / IbixAtmospherics.WaterGasShiftReactionRate * limitingFraction;
+        var thermalBlend = MathF.Max(0f, 1f - ((mixture.Temperature - 300f) / 700f));
+        collisionRate *= thermalBlend;
+
+        var deltaCO = (reactingCO / IbixAtmospherics.WaterGasShiftReactionRate) * collisionRate;
+
+        var deltaWater = deltaCO;
+        var deltaCO2 = deltaCO;
+        var deltaHydrogen = deltaCO;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
 
-        mixture.AdjustMoles(Gas.CarbonMonoxide, -shiftRate);
-        mixture.AdjustMoles(Gas.WaterVapor, -shiftRate);
-        mixture.AdjustMoles(Gas.CarbonDioxide, shiftRate);
-        mixture.AdjustMoles(Gas.Hydrogen, shiftRate);
+        mixture.AdjustMoles(Gas.CarbonMonoxide, -deltaCO);
+        mixture.AdjustMoles(Gas.WaterVapor, -deltaWater);
+        mixture.AdjustMoles(Gas.CarbonDioxide, deltaCO2);
+        mixture.AdjustMoles(Gas.Hydrogen, deltaHydrogen);
 
-        var energyReleased = shiftRate * IbixAtmospherics.WaterGasShiftEnergyReleased;
+        var energyReleased = deltaCO2 * IbixAtmospherics.WaterGasShiftEnergyReleased;
         energyReleased /= heatScale;
 
         if (energyReleased > 0f)
