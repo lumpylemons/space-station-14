@@ -1,13 +1,4 @@
 - type: gasReaction
-  id: WaterVaporDecomposition
-  priority: -2 # Runs after tritium fires so created gases don't immediately re-ignite in the same tick
-  minimumTemperature: 1815.15
-  minimumRequirements:
-    WaterVapor: 0.01
-  effects:
-    - !type:WaterDecompositionReaction {}
-
-- type: gasReaction
   id: CO2Methanation
   priority: 2
   minimumTemperature: 523.15
@@ -16,15 +7,6 @@
     Hydrogen: 0.01
   effects:
     - !type:CO2MethanationReaction {}
-
-- type: gasReaction
-  id: CarbonDioxideDecomposition
-  priority: -2 # Runs after carbon monoxide fires so generated CO and O2 don't immediately re-ignite in the same tick
-  minimumTemperature: 1815.15
-  minimumRequirements:
-    CarbonDioxide: 0.01
-  effects:
-    - !type:CarbonDioxideDecompositionReaction {}
 
 - type: gasReaction
   id: COMethanation
@@ -88,15 +70,6 @@
     - !type:HighPressureAmmoniaSynthesisReaction {}
 
 - type: gasReaction
-  id: AmmoniaDecomposition
-  priority: -3
-  minimumTemperature: 773.15
-  minimumRequirements:
-    Ammonia: 0.01
-  effects:
-    - !type:AmmoniaDecompositionReaction {}
-
-- type: gasReaction
   id: ReverseWaterGasShift
   priority: 1
   minimumTemperature: 600.15
@@ -139,9 +112,17 @@
 
 - type: gasReaction
   id: Fire
-  priority: -1
+  priority: 10 # Should always run first in a tick
   minimumTemperature: 373.149
   requiresOxidizer: true
   requiresFuel: true
   effects:
   - !type:FireReaction {}
+
+- type: gasReaction
+  id: ThermalCracking
+  priority: -10 # Should always run last in a tick
+  minimumTemperature: 773.149
+  requiresCrackable: true
+  effects:
+  - !type:ThermalCrackingReaction {}

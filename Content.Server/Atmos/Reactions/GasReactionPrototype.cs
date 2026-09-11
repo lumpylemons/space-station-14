@@ -1,4 +1,5 @@
 ﻿using Content.Server.Atmos.EntitySystems;
+using Content.Shared._Ibixstation.Atmos.Prototypes;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using Robust.Shared.Prototypes;
@@ -71,15 +72,22 @@ namespace Content.Server.Atmos.Reactions
         ///     [Ibixstation]
         ///     Whether this reaction requires an oxidizer gas to be present in the mixture to trigger.
         /// </summary>
-        [DataField("requiresOxidizer")]
-        public bool RequiresOxidizer { get; private set; } = false;
+        [DataField]
+        public bool RequiresOxidizer = false;
 
         /// <summary>
         ///     [Ibixstation]
         ///     Whether this reaction requires a fuel gas to be present in the mixture to trigger.
         /// </summary>
-        [DataField("requiresFuel")]
-        public bool RequiresFuel { get; private set; } = false;
+        [DataField]
+        public bool RequiresFuel = false;
+
+        /// <summary>
+        ///     [Ibixstation]
+        ///     Whether this reaction requires a crackable gas to be present in the mixture.
+        /// </summary>
+        [DataField]
+        public bool RequiresCrackable = false;
 
     }
 }

@@ -76,6 +76,18 @@ namespace Content.Server.Atmos.EntitySystems
         }
 
         /// <summary>
+        ///     [Ibixstation]
+        ///     Used for a generic thermal gas cracking reaction.
+        /// </summary>
+        public bool IsMixtureCrackable(GasMixture mixture, float epsilon = Atmospherics.Epsilon)
+        {
+            Span<float> tmp = stackalloc float[Atmospherics.AdjustedNumberOfGases];
+            TensorPrimitives.Multiply(mixture.Moles, GasCrackingMask, tmp);
+            return TensorPrimitives.Sum(tmp) > epsilon;
+        }
+
+
+        /// <summary>
         ///     Return speedup factor for pumped or flow-based devices that depend on MaxTransferRate.
         /// </summary>
         public float PumpSpeedup()
@@ -298,6 +310,8 @@ namespace Content.Server.Atmos.EntitySystems
                 if (prototype.RequiresOxidizer && !IsMixtureOxidizer(mixture))
                     continue;
                 if (prototype.RequiresFuel && !IsMixtureFuel(mixture))
+                    continue;
+                if (prototype.RequiresCrackable && !IsMixtureCrackable(mixture))
                     continue;
                 // [Ibixstation] end
 

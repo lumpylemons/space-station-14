@@ -123,6 +123,13 @@ public sealed partial class GasPrototype : IPrototype
 
     /// <summary>
     /// [Ibixstation]
+    /// Whether this gas is capable of undergoing thermal cracking.
+    /// </summary>
+    [DataField]
+    public bool CanCrack;
+
+    /// <summary>
+    /// [Ibixstation]
     /// The specific combustion and behavior parameters used when this gas burns as an oxidizer.
     /// </summary>
     [DataField]
@@ -134,4 +141,12 @@ public sealed partial class GasPrototype : IPrototype
     /// </summary>
     [DataField]
     public GasFuelProperties? FuelProperties;
+
+    /// <summary>
+    /// [Ibixstation]
+    /// The parameters governing how this gas splits apart under extreme heat.
+    /// </summary>
+    [DataField]
+    public GasCrackingProperties? CrackingProperties;
+
 }

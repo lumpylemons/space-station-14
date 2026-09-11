@@ -33,6 +33,14 @@
   color: '#4e4e4e'
   reagent: CarbonDioxide
   pricePerMole: 0
+  canCrack: true
+  crackingProperties:
+    onsetTemperature: 2400.15
+    crackingRateDelta: 25
+    energyAbsorbed: 286000
+    products:
+      CarbonMonoxide: 1.0
+      Oxygen: 0.5
 
 - type: gas
   id: Plasma
@@ -100,6 +108,14 @@
   color: '#bffffd'
   reagent: Water
   pricePerMole: 0
+  canCrack: true
+  crackingProperties:
+    onsetTemperature: 2200.15
+    crackingRateDelta: 30
+    energyAbsorbed: 286000
+    products:
+      Hydrogen: 1.0
+      Oxygen: 0.5
 
 - type: gas
   id: Ammonia
@@ -130,6 +146,14 @@
     dissociationProducts:
       Nitrogen: 0.5
       WaterVapor: 1.5
+  canCrack: true
+  crackingProperties:
+    onsetTemperature: 773.15
+    crackingRateDelta: 20
+    energyAbsorbed: 46200
+    products:
+      Nitrogen: 0.5
+      Hydrogen: 1.5
 
 - type: gas
   id: NitrousOxide
@@ -146,6 +170,14 @@
     power: 0.5
     byproducts:
       Nitrogen: 1
+  canCrack: true
+  crackingProperties:
+    onsetTemperature: 843.15
+    crackingRateDelta: 20
+    energyAbsorbed: -82000 # It actually releases energy when cracking
+    products:
+      Nitrogen: 1.0
+      Oxygen: 0.5
 
 - type: gas
   id: Frezon

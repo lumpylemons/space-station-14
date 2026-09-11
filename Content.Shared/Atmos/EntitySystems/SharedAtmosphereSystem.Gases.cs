@@ -60,6 +60,12 @@ public abstract partial class SharedAtmosphereSystem
     /// </summary>
     protected readonly float[] GasOxidiserFuelMask = new float[Atmospherics.TotalNumberOfGases];
 
+    /// <summary>
+    ///     [Ibixstation]
+    ///     Mask used to quickly determine if a gas mixture contains any gases capable of thermal cracking.
+    /// </summary>
+    protected readonly float[] GasCrackingMask = new float[Atmospherics.AdjustedNumberOfGases];
+
     public string?[] GasReagents = new string[Atmospherics.TotalNumberOfGases];
     protected readonly GasPrototype[] GasPrototypes = new GasPrototype[Atmospherics.TotalNumberOfGases];
 
@@ -99,6 +105,9 @@ public abstract partial class SharedAtmosphereSystem
 
             // OxidiserFuel mask is just fuel and oxidizer combined, because both are required for a reaction to occur.
             GasOxidiserFuelMask[i] = GasFuelMask[i] * GasOxidizerMask[i];
+
+            // [Ibixstation] Populate thermal cracking optimization mask binary array
+            GasCrackingMask[i] = GasPrototypes[i].CanCrack && GasPrototypes[i].CrackingProperties != null ? 1 : 0;
         }
     }
 
@@ -147,6 +156,21 @@ public abstract partial class SharedAtmosphereSystem
     /// <returns>True if the <see cref="GasMixture"/> is an oxidizer, otherwise, false.</returns>
     [PublicAPI]
     public abstract bool IsMixtureOxidizer(GasMixture mixture, float epsilon = Atmospherics.Epsilon);
+
+    /// <summary>
+    /// [Ibixstation]
+    /// Determines if a <see cref="GasMixture"/> contains any crackable gases.
+    /// </summary>
+    /// <param name="mixture">The <see cref="GasMixture"/> to inspect.</param>
+    /// <param name="epsilon">The minimum molecular threshold limit to qualify.</param>
+    /// <returns>True if crackable gas counts surpass epsilon, false otherwise.</returns>
+    [PublicAPI]
+    public bool IsMixtureCrackable(GasMixture mixture, float epsilon = Atmospherics.Epsilon)
+    {
+        var tmp = new float[Atmospherics.AdjustedNumberOfGases];
+        TensorPrimitives.Multiply(mixture.Moles, GasCrackingMask, tmp);
+        return TensorPrimitives.Sum(tmp) > epsilon;
+    }
 
     /// <summary>
     /// Calculates the heat capacity for a <see cref="GasMixture"/>.

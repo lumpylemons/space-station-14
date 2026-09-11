@@ -210,4 +210,17 @@ public static class IbixAtmospherics
     ///     [Ibixstation]
     /// </summary>
     public const float FrezonProductionCoolingMidTemperature = 73.15f;
+
+    /// <summary>
+    ///     Collection of all gases with thermal cracking behaviors.
+    ///     Restricting loop lookups to this array prevents looping through unnecessary gases.
+    ///     [Ibixstation]
+    /// </summary>
+    public static readonly Gas[] CrackableGases = new[]
+    {
+        Gas.Ammonia,
+        Gas.WaterVapor,
+        Gas.CarbonDioxide,
+        Gas.NitrousOxide
+    };
 }
