@@ -1,4 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Atmos;
 using Content.Shared.IgnitionSource;
 
 namespace Content.Server.IgnitionSource;
@@ -22,6 +23,15 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
             {
                 var position = _transform.GetGridOrMapTilePosition(uid, xform);
                 // TODO: Should this be happening every single tick?
+                // [Ibixstation] Handle above TODO to prevent fire colors being overridden.
+                if (_atmosphere.IsHotspotActive(gridUid, position))
+                {
+                    var mixture = _atmosphere.GetTileMixture(gridUid, null, position);
+
+                    if (mixture != null && mixture.Temperature >= comp.Temperature)
+                        continue;
+                }
+
                 _atmosphere.HotspotExpose(gridUid, position, comp.Temperature, 50, uid, true);
             }
         }

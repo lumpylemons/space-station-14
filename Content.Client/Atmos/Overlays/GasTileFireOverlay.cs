@@ -158,7 +158,7 @@ public sealed partial class GasTileFireOverlay : Overlay
 
                         var fireState = gas.FireState - 1;
                         var texture = state.frames[fireState][state.frameCounter[fireState]];
-                        state.drawHandle.DrawTexture(texture, index);
+                        state.drawHandle.DrawTexture(texture, index, gas.FireColor); // [Ibixstation] Add fire color visuals
                     }
                 }
 

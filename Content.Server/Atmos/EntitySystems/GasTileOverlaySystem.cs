@@ -174,7 +174,7 @@ namespace Content.Server.Atmos.EntitySystems
             else
                 byteTemp = new(mixture.Temperature);
 
-            var data = new GasOverlayData(0, new byte[VisibleGasId.Length], byteTemp);
+            var data = new GasOverlayData(0, new byte[VisibleGasId.Length], byteTemp, Color.FromHex("#FFB600")); // [Ibixstation] Defaults to orange color
 
             for (var i = 0; i < VisibleGasId.Length; i++)
             {
@@ -224,17 +224,20 @@ namespace Content.Server.Atmos.EntitySystems
             else if (!tile.Space && tile.Air != null)
                 newByteTemp = new(tile.Air.Temperature);
 
+            Color currentFireColor = tile.Hotspot.Valid ? tile.Hotspot.FireColor : Color.FromHex("#FFB600"); // [Ibixstation] Add fire color visuals
+
             if (oldData.Equals(default))
             {
                 changed = true;
-                oldData = new GasOverlayData(tile.Hotspot.State, new byte[VisibleGasId.Length], newByteTemp);
+                oldData = new GasOverlayData(tile.Hotspot.State, new byte[VisibleGasId.Length], newByteTemp, currentFireColor); // [Ibixstation] Add fire color visuals
             }
             else if (oldData.FireState != tile.Hotspot.State ||
+                     oldData.FireColor != currentFireColor || // [Ibixstation] Add fire color visuals
                      Math.Abs(oldData.ByteGasTemperature.Value - newByteTemp.Value) > 1 || // Dirty Temperature when there is more then 1 byte difference. That should measure up to minimum 4 degreese difference, 6 degreese on average.
                      (oldData.ByteGasTemperature.Value != newByteTemp.Value && newByteTemp.Value > ThermalByte.TempResolution)) // change of special ThermalByte value
             {
                 changed = true;
-                oldData = new GasOverlayData(tile.Hotspot.State, oldData.Opacity, newByteTemp);
+                oldData = new GasOverlayData(tile.Hotspot.State, oldData.Opacity, newByteTemp, currentFireColor); // [Ibixstation] Add fire color visuals
             }
 
             if (tile is {Air: not null, NoGridTile: false})

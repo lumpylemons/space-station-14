@@ -197,7 +197,8 @@ public sealed partial class AtmosphereSystem
         float exposedTemperature,
         float exposedVolume,
         bool soh = false,
-        EntityUid? sparkSourceUid = null)
+        EntityUid? sparkSourceUid = null,
+        Color? color = null) // [Ibixstation] Add fire color visuals
     {
         if (tile.Air == null)
             return;
@@ -209,6 +210,9 @@ public sealed partial class AtmosphereSystem
 
         if (tile.Hotspot.Valid)
         {
+            if (color.HasValue) // [Ibixstation] Add fire color visuals
+                tile.Hotspot.FireColor = color.Value;
+
             if (soh)
             {
                 if (isFlammable)
@@ -245,13 +249,16 @@ public sealed partial class AtmosphereSystem
                         $"{tile.Air.ToPrettyString()}");
                 }
 
+                var targetColor = color ?? Color.FromHex("#FFB600"); // [Ibixstation] Add fire color visuals
+
                 tile.Hotspot = new Hotspot
                 {
                     Volume = exposedVolume * 25f,
                     Temperature = exposedTemperature,
                     SkippedFirstProcess = tile.CurrentCycle > gridAtmosphere.UpdateCounter,
                     Valid = true,
-                    State = 1
+                    State = 1,
+                    FireColor = targetColor // [Ibixstation] Add fire color visuals
                 };
 
                 AddActiveTile(gridAtmosphere, tile);

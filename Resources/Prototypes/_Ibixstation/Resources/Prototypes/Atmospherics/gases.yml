@@ -25,6 +25,19 @@
     dissociationProducts:
       Hydrogen: 1
       Oxygen: 0.5
+    fireVisualTempThresholds:
+      - temperature: 373.15
+        color: "#00E5FF"
+        opacity: 0.65
+      - temperature: 773.15
+        color: "#00E5FF"
+        opacity: 0.70
+      - temperature: 1500
+        color: "#00A2FF"
+        opacity: 0.68
+      - temperature: 2200
+        color: "#3366FF"
+        opacity: 0.65
 
 - type: gas
   id: Methane
@@ -55,6 +68,22 @@
       Hydrogen: 2
       CarbonMonoxide: 1
       Oxygen: 0.5
+    fireVisualTempThresholds:
+      - temperature: 373.15
+        color: "#FFB600"
+        opacity: 0.70
+      - temperature: 810.15
+        color: "#FF3300"
+        opacity: 0.85
+      - temperature: 1200.0
+        color: "#FFB600"
+        opacity: 0.95
+      - temperature: 1600.0
+        color: "#FFEA00"
+        opacity: 0.80
+      - temperature: 2000.0
+        color: "#00FFE1"
+        opacity: 0.65
 
 - type: gas
   id: CarbonMonoxide
@@ -83,6 +112,19 @@
     dissociationProducts:
       Oxygen: 0.5
       CarbonMonoxide: 1
+    fireVisualTempThresholds:
+      - temperature: 373.15
+        color: "#FF4D00"
+        opacity: 0.65
+      - temperature: 882.15
+        color: "#FF9100"
+        opacity: 0.75
+      - temperature: 1400.0
+        color: "#0077FF"
+        opacity: 0.70
+      - temperature: 2000.0
+        color: "#0011FF"
+        opacity: 0.65
 
 - type: gas
   id: Cyanogen
@@ -113,3 +155,16 @@
       Nitrogen: 1
       CarbonMonoxide: 2
       Oxygen: 1
+    fireVisualTempThresholds:
+      - temperature: 373.15
+        color: "#E040FF"
+        opacity: 0.70
+      - temperature: 1123.15
+        color: "#D500F9"
+        opacity: 0.85
+      - temperature: 1600.0
+        color: "#F5D0FF"
+        opacity: 0.90
+      - temperature: 2500.0
+        color: "#F9F5FF"
+        opacity: 0.95

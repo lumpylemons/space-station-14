@@ -54,4 +54,11 @@ public struct Hotspot
     /// </summary>
     [ViewVariables]
     public byte State;
+
+    /// <summary>
+    /// [Ibixstation]
+    /// Color for the fire sprite.
+    /// </summary>
+    [ViewVariables]
+    public Color FireColor;
 }

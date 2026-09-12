@@ -67,6 +67,19 @@
     dissociationProducts:
       CarbonMonoxide: 2
       Oxygen: 1
+    fireVisualTempThresholds:
+      - temperature: 373.15
+        color: "#FFB600"
+        opacity: 0.75
+      - temperature: 1300.0
+        color: "#FF9100"
+        opacity: 0.90
+      - temperature: 2300.0
+        color: "#FFD600"
+        opacity: 0.80
+      - temperature: 2883.15
+        color: "#FFFFFF"
+        opacity: 0.95
 
 - type: gas
   id: Tritium
@@ -82,7 +95,7 @@
   reagent: Tritium
   pricePerMole: 2.5
   isFuel: true
-  fuelProperties: # [Ibixstation]
+  fuelProperties:
     minIgnitionTemperature: 773.15
     burnRateDelta: 8
     energyReleased: 286000
@@ -94,6 +107,19 @@
     dissociationProducts:
       Hydrogen: 1
       Oxygen: 0.5
+    fireVisualTempThresholds:
+      - temperature: 373.15
+        color: "#00E5FF"
+        opacity: 0.65
+      - temperature: 773.15
+        color: "#00E5FF"
+        opacity: 0.70
+      - temperature: 1500.0
+        color: "#00A2FF"
+        opacity: 0.68
+      - temperature: 2200.0
+        color: "#3366FF"
+        opacity: 0.65
 
 - type: gas
   id: WaterVapor
@@ -121,9 +147,9 @@
   id: Ammonia
   name: gas-ammonia
   abbreviation: gas-ammonia-abbreviation
-  molarHeatCapacity: 36 # [Ibixstation]
-  heatCapacityRatio: 1.31 # [Ibixstation]
-  molarMass: 17 # [Ibixstation]
+  molarHeatCapacity: 36
+  heatCapacityRatio: 1.31
+  molarMass: 17
   gasOverlaySprite:
     sprite: /Textures/Effects/atmospherics.rsi
     state: miasma
@@ -132,8 +158,8 @@
   color: '#56941E'
   reagent: Ammonia
   pricePerMole: 0.15
-  isFuel: true # [Ibixstation]
-  fuelProperties: # [Ibixstation]
+  isFuel: true
+  fuelProperties:
     minIgnitionTemperature: 924.15
     burnRateDelta: 14
     energyReleased: 383000
@@ -146,14 +172,19 @@
     dissociationProducts:
       Nitrogen: 0.5
       WaterVapor: 1.5
-  canCrack: true
-  crackingProperties:
-    onsetTemperature: 773.15
-    crackingRateDelta: 20
-    energyAbsorbed: 46200
-    products:
-      Nitrogen: 0.5
-      Hydrogen: 1.5
+    fireVisualTempThresholds:
+      - temperature: 373.15
+        color: "#AEEA00"
+        opacity: 0.65
+      - temperature: 924.15
+        color: "#FFD600"
+        opacity: 0.75
+      - temperature: 1800.0
+        color: "#FFF59D"
+        opacity: 0.70
+      - temperature: 2863.15
+        color: "#CCFF90"
+        opacity: 0.65
 
 - type: gas
   id: NitrousOxide
@@ -174,7 +205,7 @@
   crackingProperties:
     onsetTemperature: 843.15
     crackingRateDelta: 20
-    energyAbsorbed: -82000 # It actually releases energy when cracking
+    energyAbsorbed: -82000
     products:
       Nitrogen: 1.0
       Oxygen: 0.5

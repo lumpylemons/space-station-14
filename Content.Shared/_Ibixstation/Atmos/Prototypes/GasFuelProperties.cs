@@ -13,4 +13,21 @@ public partial struct GasFuelProperties
     [DataField] public float MaxFlameTemperature = 0f;
     [DataField] public Dictionary<Gas, float> StandardProducts = new();
     [DataField] public Dictionary<Gas, float> DissociationProducts = new();
+    [DataField] public List<FireVisualMilestone> FireVisualTempThresholds = new();
+
+    public GasFuelProperties()
+    {
+    }
+}
+
+[DataDefinition]
+public partial struct FireVisualMilestone
+{
+    [DataField] public float Temperature = 373.15f;
+    [DataField] public Color Color = Color.FromHex("#FFB600");
+    [DataField] public float Opacity = 0.8f;
+
+    public FireVisualMilestone()
+    {
+    }
 }

@@ -569,13 +569,15 @@ public partial class AtmosphereSystem
         float exposedTemperature,
         float exposedVolume,
         EntityUid? sparkSourceUid = null,
-        bool soh = false)
+        bool soh = false,
+        Color? color = null) // [Ibixstation] Add fire color visuals
     {
         if (!_gridAtmosQuery.Resolve(grid, ref grid.Comp, false))
             return;
 
+        var finalColor = color ?? Color.FromHex("#FFB600"); // [Ibixstation] Add fire color visuals
         if (grid.Comp.Tiles.TryGetValue(tile, out var atmosTile))
-            HotspotExpose(grid.Comp, atmosTile, exposedTemperature, exposedVolume, soh, sparkSourceUid);
+            HotspotExpose(grid.Comp, atmosTile, exposedTemperature, exposedVolume, soh, sparkSourceUid, finalColor); // [Ibixstation] Add fire color visuals
     }
 
     /// <summary>
@@ -597,13 +599,15 @@ public partial class AtmosphereSystem
         float exposedTemperature,
         float exposedVolume,
         EntityUid? sparkSourceUid = null,
-        bool soh = false)
+        bool soh = false,
+        Color? color = null) // [Ibixstation] Add fire color visuals
     {
         if (!_gridAtmosQuery.TryGetComponent(tile.GridIndex, out var atmos))
             return;
 
         DebugTools.Assert(atmos.Tiles.TryGetValue(tile.GridIndices, out var tmp) && tmp == tile);
-        HotspotExpose(atmos, tile, exposedTemperature, exposedVolume, soh, sparkSourceUid);
+        var finalColor = color ?? Color.FromHex("#FFB600"); // [Ibixstation] Add fire color visuals
+        HotspotExpose(atmos, tile, exposedTemperature, exposedVolume, soh, sparkSourceUid, finalColor);
     }
 
     /// <summary>

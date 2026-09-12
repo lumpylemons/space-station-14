@@ -77,17 +77,23 @@ public abstract partial class SharedGasTileOverlaySystem : EntitySystem
         [ViewVariables]
         public readonly ThermalByte ByteGasTemperature;
 
+        [ViewVariables] public readonly Color FireColor; // [Ibixstation] Final fire color determined by temperature and gases being processed
 
-        public GasOverlayData(byte fireState, byte[] opacity, ThermalByte byteTemp)
+
+        public GasOverlayData(byte fireState, byte[] opacity, ThermalByte byteTemp, Color fireColor)
         {
             FireState = fireState;
             Opacity = opacity;
             ByteGasTemperature = byteTemp;
+            FireColor = fireColor;
         }
 
         public bool Equals(GasOverlayData other)
         {
             if (FireState != other.FireState)
+                return false;
+
+            if (FireColor != other.FireColor) // [Ibixstation]
                 return false;
 
             if (Opacity?.Length != other.Opacity?.Length)

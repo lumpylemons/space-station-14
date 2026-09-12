@@ -123,6 +123,7 @@ public sealed partial class FireReaction : IGasReactionEffect
         var totalEnergyReleased = 0f;
         var totalGasReacted = 0f;
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
+        var activeResolvedVisuals = new List<(Color Color, float Opacity, float BurnedMoles)>(fuelCount);
 
         // Burn staged fuels
         for (var i = 0; i < fuelCount; i++)
@@ -138,6 +139,9 @@ public sealed partial class FireReaction : IGasReactionEffect
 
             var fuelProps = data.FuelProps;
             var effFactor = 1.0f - data.DissociationFactor;
+
+            var singleGasVisual = GasReactionHelpers.ResolveSingleGasVisuals(mixture.Temperature, fuelProps);
+            activeResolvedVisuals.Add((singleGasVisual.Color, singleGasVisual.Opacity, finalFuelBurned));
 
             // Plasma supersaturation logic check
             if (gasId == Gas.Plasma && (totalOxygenEqAvailable / data.AvailableMoles) >= Atmospherics.SuperSaturationThreshold)
@@ -203,7 +207,8 @@ public sealed partial class FireReaction : IGasReactionEffect
 
         if (tile != null && mixture.Temperature > Atmospherics.FireMinimumTemperatureToExist)
         {
-            atmosphereSystem.HotspotExpose(tile, mixture.Temperature, mixture.Volume);
+            Color finalTileColor = GasReactionHelpers.CompositeMixedFireColor(activeResolvedVisuals.ToArray());
+            atmosphereSystem.HotspotExpose(tile, mixture.Temperature, mixture.Volume, color: finalTileColor);
         }
 
         return ReactionResult.Reacting;
