@@ -26,3 +26,5 @@ gas-carbon-monoxide = Carbon Monoxide
 gas-carbon-monoxide-abbreviation = CO
 gas-cyanogen = Cyanogen
 gas-cyanogen-abbreviation = C₂N₂
+gas-ozone = Ozone
+gas-ozone-abbreviation = O₃

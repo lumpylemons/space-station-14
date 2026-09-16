@@ -33,6 +33,7 @@ public sealed partial class GasVentScrubberData : BaseAtmosDeviceData
         Gas.Methane, // [Ibixstation]
         Gas.CarbonMonoxide, // [Ibixstation]
         Gas.Cyanogen, // [Ibixstation]
+        Gas.Ozone, // [Ibixstation]
     };
 
     // Presets for 'dumb' air alarm modes

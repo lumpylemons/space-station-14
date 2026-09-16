@@ -129,7 +129,7 @@
 - type: gasReaction
   id: ThermalCracking
   priority: 0 # Should always run last in a tick
-  minimumTemperature: 773.149
+  minimumTemperature: 573.149
   requiresCrackable: true
   effects:
   - !type:ThermalCrackingReaction {}

@@ -34,6 +34,7 @@ namespace Content.Server.Atmos.Portable
             Gas.Methane, // [Ibixstation]
             Gas.CarbonMonoxide, // [Ibixstation]
             Gas.Cyanogen, // [Ibixstation]
+            Gas.Ozone, // [Ibixstation]
         };
 
         [ViewVariables(VVAccess.ReadWrite)]

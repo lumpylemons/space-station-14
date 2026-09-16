@@ -168,3 +168,25 @@
       - temperature: 2500.0
         color: "#F9F5FF"
         opacity: 0.95
+
+- type: gas
+  id: Ozone
+  name: gas-ozone
+  abbreviation: gas-ozone-abbreviation
+  molarHeatCapacity: 39.2
+  heatCapacityRatio: 1.29
+  molarMass: 48.00
+  gasMolesVisible: 0.4
+  color: '#5E97FF'
+  reagent: Ozone
+  pricePerMole: 0.25
+  isOxidizer: true
+  oxidizerProperties:
+    power: 1.5
+  canCrack: true
+  crackingProperties:
+    onsetTemperature: 573.15
+    crackingRateDelta: 25
+    energyAbsorbed: -142700
+    products:
+      Oxygen: 1.5                # 1 mole of O3 decomposes into 1.5 moles of O2

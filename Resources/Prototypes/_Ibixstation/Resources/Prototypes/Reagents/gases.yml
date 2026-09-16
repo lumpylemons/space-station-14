@@ -109,3 +109,33 @@
         minScale: 1.0
         clear: true
         time: 5
+
+- type: reagent
+  id: Ozone
+  name: reagent-name-ozone
+  desc: reagent-desc-ozone
+  physicalDesc: reagent-physical-desc-acrid
+  flavor: metallic
+  color: "#5E97FF"
+  boilingPoint: -112.0
+  meltingPoint: -192.2
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2.0
+    Respiration:
+      effects:
+      - !type:HealthChange
+        minScale: 0.5
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 2.5
+      - !type:AdjustAlert
+        alertType: Toxins
+        minScale: 1.0
+        clear: true
+        time: 5

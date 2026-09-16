@@ -29,3 +29,6 @@ reagent-desc-carbon-monoxide = You have genuinely no idea what this is.
 
 reagent-name-cyanogen = cyanogen
 reagent-desc-cyanogen = A toxic, highly reactive gas with an almond-like odor. Exposure rapidly impairs cellular respiration.
+
+reagent-name-ozone = ozone
+reagent-desc-ozone = An unstable, highly reactive triatomic gas with a pungent, bleach-like odor. Severe respiratory hazard that aggressively oxidizes organic tissue.

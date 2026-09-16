@@ -215,6 +215,13 @@ public static class IbixAtmospherics
     /// </summary>
     public const float HydrogenTritiumRadiationEnergyReleased = 817f;
 
+    public const float LightningBaseEnergyScaleDivisor = 10f;
+    public const float LightningOzoneThermalCeiling = 473.15f;
+    public const float LightningOzoneReactionRate = 5f;
+    public const float LightningFixationReactionRate = 10f;
+    public const float LightningCarbonDissociationRate = 8f;
+    public const float LightningWaterSplittingRate = 12f;
+
     /// <summary>
     ///     Collection of all gases with thermal cracking behaviors.
     ///     Restricting loop lookups to this array prevents looping through unnecessary gases.

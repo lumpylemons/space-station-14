@@ -29,6 +29,7 @@
       Methane: stationPlasma    # [Ibixstation]
       CarbonMonoxide: danger    # [Ibixstation]
       Cyanogen: danger          # [Ibixstation]
+      Ozone: stationWaterVapor  # [Ibixstation]
   - type: GuideHelp
     guides:
     - DeviceMonitoringAndControl
