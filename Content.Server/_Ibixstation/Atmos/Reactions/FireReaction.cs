@@ -38,6 +38,8 @@ public sealed partial class FireReaction : IGasReactionEffect
             dynamicIgnitionThreshold = Atmospherics.FireMinimumTemperatureToExist;
         }
 
+
+        // Check for lowest ignition temperature in mix
         if (currentTemp < dynamicIgnitionThreshold)
             return ReactionResult.NoReaction;
 
@@ -110,7 +112,7 @@ public sealed partial class FireReaction : IGasReactionEffect
             }
         }
 
-        // Calculate global capacity limits based on mutual resource constraints
+        // Calculate burned fuel limits based on available oxidizer power
         var capacityScaling = 1.0f;
         if (totalOxygenEqDemanded > totalOxygenEqAvailable)
         {
@@ -144,6 +146,7 @@ public sealed partial class FireReaction : IGasReactionEffect
             activeResolvedVisuals.Add((singleGasVisual.Color, singleGasVisual.Opacity, finalFuelBurned));
 
             // Plasma supersaturation logic check
+            // Nevermind I was wrong this needs to be redone
             if (gasId == Gas.Plasma && (totalOxygenEqAvailable / data.AvailableMoles) >= Atmospherics.SuperSaturationThreshold)
             {
                 var oxygenReturned = finalFuelBurned * 2.0f;
